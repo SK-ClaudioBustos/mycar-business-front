@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      // "@component": ["src/components"],
+      // "@styles/*": ["src/styles/*"],
+      // "@hooks/*": ["src/hooks/*"],
+      // "@util": ["src/utils"],
+      // "@context": ["src/context"],
+      // "@types": ["src/types"],
+      // "@layout": ["src/layout"]
+    },
+    "moduleResolution": "node",
+    "jsx": "react-jsx",
+    "module": "ESNext",
+    "target": "ES2022",
+    "lib": ["ES2023", "DOM"],
+    "strict": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ]
+}
+

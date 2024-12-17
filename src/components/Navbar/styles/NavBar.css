@@ -1,10 +1,8 @@
 nav {
-    margin: 20px auto;
     padding: 0 60px;
     border-radius: 10px;
     background-color: var(--secondary);
     height: 95px;
-    width: 95vw;
     display: flex;
     flex-direction: row;
     align-items: end;

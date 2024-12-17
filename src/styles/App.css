@@ -6,6 +6,12 @@
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: Montserrat;
+    src: url("/src/font/Montserrat-VariableFont_wght.ttf") format("truetype");
+    font-weight: 400;
+}
+
 :root {
     --primary: #C1C1C1;
     --secondary: #f1f1f1;
@@ -17,5 +23,6 @@
 body {
     height: 100%;
     background-color: var(--primary);
-    color: var(--secondary)
+    color: var(--secondary);
+    font-family: Montserrat;
 }

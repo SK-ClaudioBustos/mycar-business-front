@@ -2,13 +2,13 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      // "@component": ["src/components"],
+      "@components/*": ["src/components/*"],
+      "@utils/*": ["src/utils/*"],
+      "@type/*": ["src/types/*"],
+      "@services/*": ["src/services/*"],
+      // "@layout": ["src/layout"]
       // "@styles/*": ["src/styles/*"],
       // "@hooks/*": ["src/hooks/*"],
-      // "@util": ["src/utils"],
-      // "@context": ["src/context"],
-      // "@types": ["src/types"],
-      // "@layout": ["src/layout"]
     },
     "moduleResolution": "node",
     "jsx": "react-jsx",

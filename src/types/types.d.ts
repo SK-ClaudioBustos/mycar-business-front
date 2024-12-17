@@ -1,0 +1,1 @@
+export type ErrorData = Error | null;

@@ -6,8 +6,8 @@
       "@utils/*": ["src/utils/*"],
       "@type/*": ["src/types/*"],
       "@services/*": ["src/services/*"],
+      "@styles/*": ["src/styles/*"],
       // "@layout": ["src/layout"]
-      // "@styles/*": ["src/styles/*"],
       // "@hooks/*": ["src/hooks/*"],
     },
     "moduleResolution": "node",

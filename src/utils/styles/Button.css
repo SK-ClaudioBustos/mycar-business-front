@@ -1,0 +1,19 @@
+.button {
+    border: none;
+    outline: none;
+    background: var(--secondary);
+    --button-size: 80px;
+    width: 80px;
+    height: 80px;
+    border-radius: var(--borderRadius);
+    color: var(--quaternary);
+    transition: all 0.2s ease-out;
+
+    &:hover {
+        background: color-mix(in srgb, var(--secondary), #000 10%);
+    }
+
+    &.shadow {
+        box-shadow: 4px 4px 4px #00000025;
+    }
+}

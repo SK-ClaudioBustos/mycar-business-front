@@ -7,7 +7,7 @@
       "@type/*": ["src/types/*"],
       "@services/*": ["src/services/*"],
       "@styles/*": ["src/styles/*"],
-      // "@layout": ["src/layout"]
+      "@icons/*": ["src/icons/*"]
       // "@hooks/*": ["src/hooks/*"],
     },
     "moduleResolution": "node",

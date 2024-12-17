@@ -1,0 +1,23 @@
+.nav-item {
+    border-bottom: 14px solid var(--primary);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 144px;
+    text-align: center;
+
+    & span {
+        font-size: 32px;
+        color: var(--primary);
+    }
+
+    &.selected {
+        border-bottom: 14px solid var(--tertiary);
+
+        & span {
+        color: var(--tertiary);
+
+        }
+    }
+}

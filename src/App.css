@@ -1,0 +1,21 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #C1C1C1;
+    --secondary: #f1f1f1;
+    --tertiary: #4D80F7;
+    --quaternary: #757575;
+}
+
+
+body {
+    height: 100%;
+    background-color: var(--primary);
+    color: var(--secondary)
+}

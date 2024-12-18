@@ -1,5 +1,5 @@
 import { NavBar } from "@components/Navbar/NavBar";
-import { Table } from "@components/Table/Content";
+import { Content } from "@components/Content/Content";
 import "./Layout.css";
 
 export const Layout = () => {
@@ -9,7 +9,7 @@ export const Layout = () => {
                 <NavBar />
             </header>
             <main>
-                <Table />
+                <Content />
             </main>
         </div>
     );

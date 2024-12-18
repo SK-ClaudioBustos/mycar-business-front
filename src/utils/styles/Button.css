@@ -1,19 +1,25 @@
 .button {
     border: none;
     outline: none;
-    background: var(--secondary);
-    --button-size: 80px;
-    width: 80px;
-    height: 80px;
+    width: var(--w);
+    height: var(--h);
     border-radius: var(--borderRadius);
     color: var(--quaternary);
     transition: all 0.2s ease-out;
 
-    &:hover {
-        background: color-mix(in srgb, var(--secondary), #000 10%);
+    &.background-white {
+        background: var(--secondary);
     }
 
-    &.shadow {
-        box-shadow: 4px 4px 4px #00000025;
+    &.background-white:hover {
+        background: color-mix(in srgb, var(--secondary), #000 5%);
+    }
+
+    &.inherit {
+        background: inherit;
+    }
+
+    &.inherit:hover {
+        background: color-mix(in srgb, #c1c1c1, #000 5%);
     }
 }

@@ -1,0 +1,27 @@
+.table {
+    background-color: var(--secondary);
+    min-height: 500px;
+    border-radius: 10px;
+
+    & .table-header {
+        background-color: var(--tertiary);
+        height: 115px;
+        width: 100%;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 60px;
+
+        & span {
+            font-size: 32px;
+            font-weight: bold;
+        }
+    }
+
+    & .table-body {
+        padding: 40px 30px;
+    }
+}

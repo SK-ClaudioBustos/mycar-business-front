@@ -17,7 +17,7 @@ export const NavBar = () => {
     const sectionSelected = "cars";
 
     return (
-        <nav>
+        <nav className="box-shadow">
             {
                 ITEMS.map((item) => (
                     <NavItem

@@ -1,22 +1,25 @@
 .nav-item {
-    border-bottom: 14px solid var(--primary);
+    --inactive-color: color-mix(in srgb, var(--quaternary), #fff 50%);
+    border-bottom: 14px solid var(--inactive-color);
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 144px;
     text-align: center;
+    cursor: pointer;
 
     & span {
         font-size: 32px;
-        color: var(--primary);
+        color: var(--inactive-color);
     }
 
     &.selected {
+        cursor: default;
         border-bottom: 14px solid var(--tertiary);
 
         & span {
-        color: var(--tertiary);
+            color: var(--tertiary);
 
         }
     }

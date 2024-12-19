@@ -3,6 +3,7 @@ import PencilIcon from "@icons/pencil.svg?react";
 import TrashIcon from "@icons/trash.svg?react";
 import { Car } from "@type/types";
 import { Button } from "@utils/Button";
+import { CustomTooltip } from "@utils/CustomTooltip";
 import { IconSVG } from "@utils/IconSVG";
 import "./styles/TableRow.css";
 
@@ -10,8 +11,26 @@ interface Props {
     car: Car
 }
 
+const BUTTONS = [
+    {
+        idPrefix: "edit-button",
+        content: "Edit",
+        Icon: PencilIcon
+    },
+    {
+        idPrefix: "delete",
+        content: "Delete",
+        Icon: TrashIcon
+    },
+    {
+        idPrefix: "details",
+        content: "Show Details",
+        Icon: EyeIcon
+    }
+];
+
 export const TableRow = ({ car }: Props) => {
-    const { company, model, KM } = car;
+    const { id, company, model, KM } = car;
     return (
         <div className="table-row">
             <span>
@@ -24,15 +43,22 @@ export const TableRow = ({ car }: Props) => {
                 {KM}
             </span>
             <div className="actions">
-                <Button height="50" width="50" borderRadius="50%">
-                    <IconSVG Icon={PencilIcon} size={24} />
-                </Button>
-                <Button height="50" width="50" borderRadius="50%">
-                    <IconSVG Icon={TrashIcon} size={24} />
-                </Button>
-                <Button height="50" width="50" borderRadius="50%">
-                    <IconSVG Icon={EyeIcon} size={24} />
-                </Button>
+                {
+                    BUTTONS.map((button) => {
+                        const idButton = `${button.idPrefix}-${id}`;
+                        return (
+                            (
+                                <CustomTooltip elementId={idButton} content={button.content}>
+                                    <Button
+                                        id={idButton}
+                                        height="50" width="50" borderRadius="50%">
+                                        <IconSVG Icon={button.Icon} size={24} />
+                                    </Button>
+                                </CustomTooltip>
+                            )
+                        );
+                    })
+                }
             </div>
         </div>
     );

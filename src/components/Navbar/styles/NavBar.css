@@ -2,7 +2,6 @@ nav {
     padding: 0 60px;
     border-radius: 10px;
     background-color: var(--secondary);
-    height: 95px;
     display: flex;
     flex-direction: row;
     align-items: end;

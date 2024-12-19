@@ -20,6 +20,6 @@
     }
 
     &.inherit:hover {
-        background: color-mix(in srgb, #c1c1c1, #000 5%);
+        background: color-mix(in srgb, var(--secondary), #000 10%);
     }
 }

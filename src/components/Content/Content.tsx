@@ -8,7 +8,7 @@ export const Content = () => {
     return (
         <section className="content">
             <div className="button-container">
-                <Button height="80" width="80" className="background-white" isDropShadow>
+                <Button height="60" width="60" className="background-white" isDropShadow>
                     <IconSVG Icon={PlusIcon} size={48} />
                 </Button>
             </div>

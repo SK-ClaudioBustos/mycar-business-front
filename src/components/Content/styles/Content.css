@@ -1,9 +1,3 @@
 .content {
     margin: 100px 0 0;
-
-    & .button-container {
-        display: flex;
-        justify-content: end;
-        margin-bottom: 20px;
-    }
 }

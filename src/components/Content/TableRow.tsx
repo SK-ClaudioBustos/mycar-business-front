@@ -1,7 +1,7 @@
 import EyeIcon from "@icons/eye.svg?react";
 import PencilIcon from "@icons/pencil.svg?react";
 import TrashIcon from "@icons/trash.svg?react";
-import { Car } from "@type/types";
+import { ButtonData, Car } from "@type/types";
 import { ActionButton } from "./ButtonsContainer/ActionButton";
 import "./styles/TableRow.css";
 
@@ -9,20 +9,20 @@ interface Props {
     car: Car
 }
 
-const BUTTONS = [
+const BUTTONS: ButtonData[] = [
     {
-        idPrefix: "edit-button",
-        content: "Edit",
+        id: "edit-button",
+        tooltipLabel: "Edit",
         Icon: PencilIcon
     },
     {
-        idPrefix: "delete",
-        content: "Delete",
+        id: "delete",
+        tooltipLabel: "Delete",
         Icon: TrashIcon
     },
     {
-        idPrefix: "details",
-        content: "Show Details",
+        id: "details",
+        tooltipLabel: "Show Details",
         Icon: EyeIcon
     }
 ];
@@ -43,13 +43,13 @@ export const TableRow = ({ car }: Props) => {
             <div className="actions">
                 {
                     BUTTONS.map((button) => {
-                        const idButton = `${button.idPrefix}-${id}`;
+                        const idButton = `${button.id}-${id}`;
                         return (
                             (
                                 <ActionButton
                                     key={idButton}
                                     id={idButton}
-                                    tooltipLabel={button.content}
+                                    tooltipLabel={button.tooltipLabel}
                                     height="50" width="50"
                                     borderRadius="50%"
                                     Icon={button.Icon}

@@ -11,3 +11,9 @@ export interface Car {
     model: string;
     KM: number;
 } 
+
+export interface ButtonData {
+    id: string;
+    tooltipLabel: string;
+    Icon: FunctionComponent<SVGProps<SVGSVGElement>>;
+}

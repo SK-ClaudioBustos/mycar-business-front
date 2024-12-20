@@ -2,9 +2,7 @@ import EyeIcon from "@icons/eye.svg?react";
 import PencilIcon from "@icons/pencil.svg?react";
 import TrashIcon from "@icons/trash.svg?react";
 import { Car } from "@type/types";
-import { Button } from "@utils/Button";
-import { CustomTooltip } from "@utils/CustomTooltip";
-import { IconSVG } from "@utils/IconSVG";
+import { ActionButton } from "./ButtonsContainer/ActionButton";
 import "./styles/TableRow.css";
 
 interface Props {
@@ -48,13 +46,15 @@ export const TableRow = ({ car }: Props) => {
                         const idButton = `${button.idPrefix}-${id}`;
                         return (
                             (
-                                <CustomTooltip elementId={idButton} content={button.content}>
-                                    <Button
-                                        id={idButton}
-                                        height="50" width="50" borderRadius="50%">
-                                        <IconSVG Icon={button.Icon} size={24} />
-                                    </Button>
-                                </CustomTooltip>
+                                <ActionButton
+                                    key={idButton}
+                                    id={idButton}
+                                    tooltipLabel={button.content}
+                                    height="50" width="50"
+                                    borderRadius="50%"
+                                    Icon={button.Icon}
+                                    IconSize={24}
+                                />
                             )
                         );
                     })

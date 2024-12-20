@@ -1,11 +1,11 @@
-import { AddButton } from "./AddButton";
+import { ButtonsContainer } from "./ButtonsContainer/ButtonsContainer";
 import "./styles/Content.css";
 import { Table } from "./Table";
 
 export const Content = () => {
     return (
         <section className="content">
-            <AddButton label="Add Car" />
+            <ButtonsContainer />
             <Table />
         </section>
     );

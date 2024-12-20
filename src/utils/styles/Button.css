@@ -6,6 +6,7 @@
     border-radius: var(--borderRadius);
     color: var(--quaternary);
     transition: all 0.2s ease-out;
+    cursor: pointer;
 
     &.background-white {
         background: var(--secondary);

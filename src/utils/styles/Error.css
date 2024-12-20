@@ -1,0 +1,9 @@
+.error-container {
+    height: 50vh;
+
+    & .error {
+        border-radius: 5px;
+        padding: 10px;
+        background-color: var(--quaternary);
+    }
+}

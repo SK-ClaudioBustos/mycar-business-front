@@ -1,6 +1,8 @@
 import { NavBar } from "@components/Navbar/NavBar";
-import { Content } from "@components/Content/Content";
+import { lazy, Suspense } from "react";
 import "./Layout.css";
+
+const Content = lazy(() => import("@components/Content/Content.tsx"));
 
 export const Layout = () => {
     return (
@@ -9,7 +11,9 @@ export const Layout = () => {
                 <NavBar />
             </header>
             <main>
-                <Content />
+                <Suspense fallback={<div className="flex-center">CARGANDO CONTENIDO</div>}>
+                    <Content />
+                </Suspense>
             </main>
         </div>
     );

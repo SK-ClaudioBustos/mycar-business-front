@@ -3,7 +3,7 @@ import "./styles/Loading.css";
 export const Loading = ({ label }: { label: string }) => {
     return (
         <div className="flex-center loading-container">
-            <span className="loader-text">{label}</span>
+            <span className="loader-text text-blue">{label}</span>
             <svg
                 className="loader-container"
                 viewBox="0 0 40 40"

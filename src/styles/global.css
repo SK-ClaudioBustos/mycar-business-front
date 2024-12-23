@@ -7,3 +7,7 @@
 .box-shadow {
     box-shadow: 4px 4px 4px #00000025;
 }
+
+.text-blue {
+    color: var(--tertiary);
+}

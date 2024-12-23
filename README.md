@@ -20,11 +20,11 @@ Sigue estos pasos para ejecutar el proyecto en tu entorno local:
    ```
 3. Instala las dependencias:
    ```bash
-   npm install
+   pnpm install
    ```
 4. Inicia el servidor de desarrollo:
    ```bash
-   npm run dev
+   pnpm run dev
    ```
 5. Abre tu navegador y accede a `http://localhost:3000`.
 

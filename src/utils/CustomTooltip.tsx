@@ -18,7 +18,7 @@ export const CustomTooltip = ({ elementId, content, children, place = "bottom" }
                 anchorSelect={`#${elementId}`}
                 place={place}
                 content={content}
-                variant="light"
+                variant="dark"
             />
         </>
     );

@@ -4,7 +4,7 @@
     --rt-opacity: 1;
     
     /* Default Values */
-    --rt-color-dark: #222;
+    --rt-color-dark: color-mix(in srgb, var(--quaternary), #fff 60%);
     --rt-color-success: #8dc572;
     --rt-color-error: #be6464;
     --rt-color-warning: #f0ad4e;

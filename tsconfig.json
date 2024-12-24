@@ -9,6 +9,7 @@
       "@styles/*": ["src/styles/*"],
       "@icons/*": ["src/icons/*"],
       "@context/*": ["src/context/*"],
+      "@store/*": ["src/store/*"],
     },
     "moduleResolution": "node",
     "jsx": "react-jsx",

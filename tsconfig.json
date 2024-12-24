@@ -7,8 +7,8 @@
       "@type/*": ["src/types/*"],
       "@services/*": ["src/services/*"],
       "@styles/*": ["src/styles/*"],
-      "@icons/*": ["src/icons/*"]
-      // "@hooks/*": ["src/hooks/*"],
+      "@icons/*": ["src/icons/*"],
+      "@context/*": ["src/context/*"],
     },
     "moduleResolution": "node",
     "jsx": "react-jsx",

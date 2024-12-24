@@ -5,8 +5,6 @@ export interface NavItemData {
     label: string
 }
 
-
-
 export interface ButtonData {
     id: string;
     tooltipLabel: string;

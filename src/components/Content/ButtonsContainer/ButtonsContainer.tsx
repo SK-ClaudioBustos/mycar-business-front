@@ -1,28 +1,51 @@
 import PlusIcon from "@icons/plus.svg?react";
 import RefreshIcon from "@icons/refresh.svg?react";
+import { useModalStorage } from "@store/modal.store";
+import { ButtonData } from "@type/types";
+import { IconSVG } from "@utils/IconSVG";
 import { ActionButton } from "./ActionButton";
 import "./styles/ButtonsContainer.css";
-import { ButtonData } from "@type/types";
-
-const BUTTONS: ButtonData[] = [
-    {
-        id: "edit-button",
-        tooltipLabel: "Edit",
-        Icon: RefreshIcon
-    },
-    {
-        id: "delete",
-        tooltipLabel: "Delete",
-        Icon: PlusIcon
-    }
-];
 
 export const ButtonsContainer = () => {
+
+    const setShowModal = useModalStorage((state) => state.setShowModal);
+
+    const handleAdd = () => {
+        setShowModal(true);
+    }
+
+    const BUTTONS: ButtonData[] = [
+        {
+            id: "refresh",
+            tooltipLabel: "Refresh",
+            Icon: RefreshIcon,
+            function: () => { }
+        },
+        {
+            id: "Add",
+            tooltipLabel: "Add",
+            Icon: PlusIcon,
+            function: handleAdd
+        }
+    ];
+
     return (
         <div className="button-container">
             {
                 BUTTONS.map((button) => (
-                    <ActionButton key={button.id} className="background-white" borderRadius="10%" tooltipLabel={button.tooltipLabel} id={button.id} Icon={button.Icon} dropShadow />
+                    <ActionButton
+                        key={button.id}
+                        id={button.id}
+                        height="60"
+                        width="60"
+                        onClick={button.function}
+                        className="background-white"
+                        borderRadius="10%"
+                        tooltipLabel={button.tooltipLabel}
+                        dropShadow
+                    >
+                        <IconSVG Icon={button.Icon} size={30} />
+                    </ActionButton>
                 ))
             }
         </div>

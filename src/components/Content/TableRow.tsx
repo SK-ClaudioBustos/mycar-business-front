@@ -1,10 +1,11 @@
 import EyeIcon from "@icons/eye.svg?react";
 import PencilIcon from "@icons/pencil.svg?react";
 import TrashIcon from "@icons/trash.svg?react";
+import { CarItem } from "@type/car";
 import { ButtonData } from "@type/types";
 import { ActionButton } from "./ButtonsContainer/ActionButton";
 import "./styles/TableRow.css";
-import { CarItem } from "@type/car";
+import { IconSVG } from "@utils/IconSVG";
 
 interface Props {
     car: CarItem
@@ -53,9 +54,9 @@ export const TableRow = ({ car }: Props) => {
                                     tooltipLabel={button.tooltipLabel}
                                     height="50" width="50"
                                     borderRadius="50%"
-                                    Icon={button.Icon}
-                                    IconSize={24}
-                                />
+                                >
+                                    <IconSVG Icon={button.Icon} size={24} />
+                                </ActionButton>
                             )
                         );
                     })

@@ -1,27 +1,33 @@
 import { Button } from "@utils/Button";
 import { CustomTooltip } from "@utils/CustomTooltip";
-import { IconSVG } from "@utils/IconSVG";
-import { FunctionComponent, SVGProps } from "react";
+import { ActionButtonProps } from "./interfaces";
 import "./styles/ActionButton.css";
 
-interface ActionButton {
-    id: string;
-    tooltipLabel: string;
-    Icon: FunctionComponent<SVGProps<SVGSVGElement>>;
-    className?: string;
-    IconSize?: number;
-    height?: string;
-    width?: string;
-    borderRadius?: string;
-    dropShadow?: boolean;
-}
-
-export const ActionButton = ({ id, Icon, tooltipLabel, className = "inherit", IconSize = 30, height = "60", width = "60", borderRadius = "0%", dropShadow = false }: ActionButton) => {
+export const ActionButton = (props: ActionButtonProps) => {
+    const {
+        id,
+        onClick,
+        children,
+        tooltipLabel,
+        height = "60",
+        width = "60",
+        className = "inherit",
+        borderRadius = "0%",
+        dropShadow = false
+    } = props;
     return (
         <CustomTooltip elementId={id} content={tooltipLabel}>
-            <Button id={id} height={height} width={width} className={className} borderRadius={borderRadius} dropShadow={dropShadow}>
+            <Button
+                id={id}
+                height={height}
+                width={width}
+                className={className}
+                borderRadius={borderRadius}
+                dropShadow={dropShadow}
+                onClick={onClick}
+            >
                 <div className="action-button-content">
-                    <IconSVG Icon={Icon} size={IconSize} />
+                    {children}
                 </div>
             </Button>
         </CustomTooltip>

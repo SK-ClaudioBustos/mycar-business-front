@@ -9,5 +9,6 @@ export interface ButtonData {
     id: string;
     tooltipLabel: string;
     Icon: FunctionComponent<SVGProps<SVGSVGElement>>;
+    function?: () => void
 }
 

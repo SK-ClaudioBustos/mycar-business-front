@@ -1,12 +1,13 @@
 import EyeIcon from "@icons/eye.svg?react";
 import PencilIcon from "@icons/pencil.svg?react";
 import TrashIcon from "@icons/trash.svg?react";
-import { ButtonData, Car } from "@type/types";
+import { ButtonData } from "@type/types";
 import { ActionButton } from "./ButtonsContainer/ActionButton";
 import "./styles/TableRow.css";
+import { CarItem } from "@type/car";
 
 interface Props {
-    car: Car
+    car: CarItem
 }
 
 const BUTTONS: ButtonData[] = [

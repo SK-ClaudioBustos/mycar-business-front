@@ -1,7 +1,6 @@
 .input-container {
     width: 100%;
     height: 85px;
-    --error: #ef4c4c;
 
     & label {
         color: var(--quaternary);

@@ -1,0 +1,23 @@
+.modal-content {
+    width: 450px;
+
+    .modal-header {
+        background-color: var(--tertiary);
+        border-top-left-radius: 25px;
+        border-top-right-radius: 25px;
+        padding: 13px 40px;
+        
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        & span {
+            font-size: 1.5rem;
+        }
+    }
+
+    .modal-body {
+        margin-top: 15px;
+        padding: 20px 40px;
+    }
+}

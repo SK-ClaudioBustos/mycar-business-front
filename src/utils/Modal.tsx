@@ -9,7 +9,7 @@ interface Props {
 
 const eventListener = "keydown";
 
-export const Modal = ({ children }: Props) => {
+export default function Modal({ children }: Props) {
     const modalRef = useRef<HTMLDivElement>(null)
     const showModal = useModalStorage((state) => state.showModal);
     const setShowModal = useModalStorage((state) => state.setShowModal);

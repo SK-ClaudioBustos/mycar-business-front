@@ -2,10 +2,14 @@ import { TableProvider } from "@context/table.provider";
 import { useFetchToken } from "@services/authService";
 import { Error } from "@utils/Error";
 import { Loading } from "@utils/Loading";
+import { lazy } from "react";
 import { ButtonsContainer } from "./ButtonsContainer/ButtonsContainer";
+import { Form } from "./ModalContent/Form";
+import { ModalContent } from "./ModalContent/ModalContent";
 import "./styles/Content.css";
 import { Table } from "./Table";
-import { Modal } from "@utils/Modal";
+
+const Modal = lazy(() => import("@utils/Modal"));
 
 export default function Content() {
     const { loading, error } = useFetchToken(import.meta.env.VITE_EMAIL, import.meta.env.VITE_PASSWORD);
@@ -24,9 +28,9 @@ export default function Content() {
                 <Table />
             </TableProvider>
             <Modal>
-                <>
-                Modal
-                </>
+                <ModalContent title="Add Car">
+                    <Form />
+                </ModalContent>
             </Modal>
         </section>
     );

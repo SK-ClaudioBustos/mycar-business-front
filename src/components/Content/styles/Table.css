@@ -1,7 +1,7 @@
 .table {
     background-color: var(--secondary);
     border-radius: 10px;
-
+    --actions-width: 140px;
 
     & .table-header-container {
         background-color: var(--tertiary);
@@ -27,7 +27,7 @@
             }
     
             & .actions-header {
-                width: 200px;
+                width: var(--actions-width);
                 height: auto;
             }
         }

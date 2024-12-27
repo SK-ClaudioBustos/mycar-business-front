@@ -17,6 +17,8 @@
     --secondary: #f1f1f1;
     --tertiary: #4D80F7;
     --quaternary: #757575;
+    --error: #ef4c4c;
+    --success: var(--tertiary);
 }
 
 

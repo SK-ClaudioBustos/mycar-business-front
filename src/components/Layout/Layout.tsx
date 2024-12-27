@@ -2,7 +2,7 @@ import { NavBar } from "@components/Navbar/NavBar";
 import { lazy, Suspense } from "react";
 import "./Layout.css";
 import { Loading } from "@utils/Loading";
-
+const Alert = lazy(() => import("@utils/Alert"));
 const Content = lazy(() => import("@components/Content/Content.tsx"));
 
 export const Layout = () => {
@@ -16,6 +16,7 @@ export const Layout = () => {
                     <Content />
                 </Suspense>
             </main>
+            <Alert show={false} message="Testing alert" type="error" />
         </div>
     );
 }

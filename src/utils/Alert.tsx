@@ -1,27 +1,42 @@
+import AlertIcon from "@icons/alert.svg?react";
+import CheckIcon from "@icons/check.svg?react";
+import { AlertData, TypeAlert } from "@type/types";
+import { ReactNode } from "react";
 import styles from "./styles/Alert.module.css";
 
 interface Props {
-    show: boolean;
-    message: string;
-    type?: "success" | "error";
+    alert: AlertData
 }
 
-export default function Alert({ show, message, type = "success" }: Props) {
+const ICONS: Record<TypeAlert, ReactNode> = {
+    "success": <CheckIcon width={20} height={20} />,
+    "error": <AlertIcon width={20} height={20} />,
+    "none": <></>
+}
 
-    if(!show){
+export default function Alert({ alert }: Props) {
+    const { isVisible, message, type = "success" } = alert;
+    if (!isVisible || !type) {
         return null;
     }
 
     return (
         <div className={`${styles.alert} ${styles[type]}`}>
-            <p>
-                <b>
-                    {`${type[0].toLocaleUpperCase()}${type.slice(1)}`}
-                </b>
-            </p>
-            <span>
-                {message}
-            </span>
+            <div className="flex-center">
+                {
+                    ICONS[type]
+                }
+            </div>
+            <div>
+                <p>
+                    <b>
+                        {`${type[0].toLocaleUpperCase()}${type.slice(1)}`}
+                    </b>
+                </p>
+                <span>
+                    {message}
+                </span>
+            </div>
         </div>
     );
 }

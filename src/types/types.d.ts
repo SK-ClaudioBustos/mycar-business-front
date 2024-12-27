@@ -9,6 +9,15 @@ export interface ButtonData {
     id: string;
     tooltipLabel: string;
     Icon: FunctionComponent<SVGProps<SVGSVGElement>>;
-    function?: () => void
+    function?: () => void;
+}
+
+export type TypeAlert = "success" | "error" | "none";
+
+export interface AlertData {
+    isVisible: boolean;
+    message: string | null;
+    type?: TypeAlert | null;
+    duration?: number;
 }
 

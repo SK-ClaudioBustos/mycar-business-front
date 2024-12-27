@@ -1,11 +1,14 @@
 import { NavBar } from "@components/Navbar/NavBar";
+import { useAlertStorage } from "@store/alert.store";
+import { Loading } from "@utils/Loading";
 import { lazy, Suspense } from "react";
 import "./Layout.css";
-import { Loading } from "@utils/Loading";
 const Alert = lazy(() => import("@utils/Alert"));
 const Content = lazy(() => import("@components/Content/Content.tsx"));
 
 export const Layout = () => {
+    const alert = useAlertStorage((state) => state.alert);
+
     return (
         <div className="layout">
             <header>
@@ -16,7 +19,7 @@ export const Layout = () => {
                     <Content />
                 </Suspense>
             </main>
-            <Alert show={false} message="Testing alert" type="error" />
+            <Alert alert={alert} />
         </div>
     );
 }

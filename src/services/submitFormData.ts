@@ -1,13 +1,15 @@
 import { CarFormValues } from "@components/Content/ModalContent/schema/car.schema";
+import { AlertData } from "@type/types";
 import { Dispatch, SetStateAction } from "react";
 
 interface Props {
     data: CarFormValues;
-    setShowModal: (showModalState: boolean) => void
-    setLoading: Dispatch<SetStateAction<boolean>>
+    setShowModal: (showModalState: boolean) => void;
+    setLoading: Dispatch<SetStateAction<boolean>>;
+    setShowAlert: (alert: AlertData) => void;
 }
 
-export const submitFormData = ({ data, setLoading, setShowModal }: Props) => {
+export const submitFormData = ({ data, setLoading, setShowModal, setShowAlert }: Props) => {
     setLoading(true);
     const carData = {
         companyName: data.companyName,
@@ -25,15 +27,24 @@ export const submitFormData = ({ data, setLoading, setShowModal }: Props) => {
     };
     fetch(url, fetchParams).then((response) => {
         if (!response.ok) {
-            throw new Error(`Error ${response.status}: ${response.body}`)
+            console.log("error", response);
+            throw new Error(`Error ${response.status}`)
         }
         return response.json();
     }).then((response) => {
         console.log(response);
         // TODO guardar respuesta para poder agregar mas filas en la tabla
-    }).catch((error) => {
-        console.log(error);
-        // TODO controlar errores con una alerta global
+        setShowAlert({
+            isVisible: true,
+            type: "success",
+            message: "Car added"
+        });
+    }).catch((error: Error) => {
+        setShowAlert({
+            isVisible: true,
+            type: "error",
+            message: `${error.message}`
+        });
     }).finally(() => {
         setLoading(false);
         setShowModal(false);

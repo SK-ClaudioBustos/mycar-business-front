@@ -8,9 +8,12 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { CarForm } from "./CarForm";
 import { carFormDefaultValues, CarFormValues, carSchema } from "./schema/car.schema";
 import "./styles/Form.css";
+import { useAlertStorage } from "@store/alert.store";
 
 export const Form = () => {
     const setShowModal = useModalStorage((state) => state.setShowModal);
+    const setShowAlert = useAlertStorage((state) => state.setAlert);
+
     const [loading, setLoading] = useState(false);
     const { control, formState: { errors }, handleSubmit } = useForm<CarFormValues>({
         resolver: zodResolver(carSchema),
@@ -19,7 +22,7 @@ export const Form = () => {
     });
 
     const onSubmit: SubmitHandler<CarFormValues> = (data) => {
-        submitFormData({ data, setLoading, setShowModal });
+        submitFormData({ data, setLoading, setShowModal, setShowAlert });
     };
 
     return (

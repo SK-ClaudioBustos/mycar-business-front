@@ -8,19 +8,37 @@
     transition: all 0.2s ease-out;
     cursor: pointer;
 
-    &.background-white {
-        background: var(--secondary);
-    }
-
-    &.background-white:hover {
-        background: color-mix(in srgb, var(--secondary), #000 5%);
-    }
-
     &.inherit {
         background: inherit;
+
+        &:hover {
+            background: color-mix(in srgb, var(--secondary), #000 10%);
+        }
     }
 
-    &.inherit:hover {
-        background: color-mix(in srgb, var(--secondary), #000 10%);
+    &.bg-white {
+        background: var(--secondary);
+
+        &:hover {
+            background: color-mix(in srgb, var(--secondary), #000 5%);
+        }
+    }
+
+    &.bg-blue {
+        font-size: 1.2rem;
+        color: var(--secondary);
+        background-color: var(--tertiary);
+
+        &:hover {
+            background-color: color-mix(in srgb, var(--tertiary), #000 10%);
+        }
+    }
+
+    &.btn-close {
+        background-color: inherit;
+
+        &:hover {
+            background-color: inherit;
+        }
     }
 }

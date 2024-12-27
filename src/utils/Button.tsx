@@ -8,6 +8,7 @@ export const Button = (props: ButtonProps) => {
         height,
         id = null,
         className = "inherit",
+        type = "button",
         borderRadius = "5px",
         dropShadow = false,
         onClick = undefined
@@ -15,9 +16,10 @@ export const Button = (props: ButtonProps) => {
     return (
         <button
             id={id ?? undefined}
-            style={{ "--borderRadius": borderRadius, "--w": `${width}px`, "--h": `${height}px` } as React.CSSProperties}
+            style={{ "--borderRadius": borderRadius, "--w": `${width}`, "--h": `${height}` } as React.CSSProperties}
             className={dropShadow ? `button box-shadow ${className}` : `button ${className}`}
             onClick={onClick}
+            type={type}
         >
             {children}
         </button>

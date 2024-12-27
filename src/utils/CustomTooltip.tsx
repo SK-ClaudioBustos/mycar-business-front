@@ -14,11 +14,11 @@ export const CustomTooltip = ({ elementId, content, children, place = "bottom" }
         <>
             {children}
             <Tooltip
-                className="tooltip"
+                className="tooltip box-shadow"
                 anchorSelect={`#${elementId}`}
                 place={place}
                 content={content}
-                variant="dark"
+                variant="info"
             />
         </>
     );

@@ -4,6 +4,7 @@ export interface ButtonProps {
     width: string;
     id?: string | null;
     className?: string;
+    type?: "button" | "reset" | "submit" | undefined;
     borderRadius?: string;
     dropShadow?: boolean;
     onClick?: () => void;

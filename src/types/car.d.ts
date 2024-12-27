@@ -1,16 +1,15 @@
-export interface CarItem {
-    id: number;
-    company: string;
-    model: string;
-    KM: number;
-}
-
-export interface Car {
-    id: number;
+export interface CarFormData {
     companyName: string;
     modelName: string;
-    userId: number;
     km: number;
+}
+
+export interface CarItem extends CarFormData {
+    id: number;
+}
+
+export interface Car extends CarItem {
+    userId: number;
     createdAt: Date;
     updatedAt: Date;
     active: boolean;

@@ -36,10 +36,10 @@ export const ButtonsContainer = () => {
                     <ActionButton
                         key={button.id}
                         id={button.id}
-                        height="60"
-                        width="60"
+                        height="60px"
+                        width="60px"
                         onClick={button.function}
-                        className="background-white"
+                        className="bg-white"
                         borderRadius="10%"
                         tooltipLabel={button.tooltipLabel}
                         dropShadow

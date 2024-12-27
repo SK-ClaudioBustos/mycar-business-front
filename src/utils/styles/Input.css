@@ -13,10 +13,6 @@
         border: 2px solid var(--quaternary);
         border-radius: 10px;
         padding: 10px 10px;
-
-        &.invalid-field {
-            border-color: var(--error);
-        }
     }
 
     /* Para Chrome, Safari, Edge, Opera */
@@ -44,6 +40,16 @@
         & .form-control {
             outline: none;
             border: 2px solid var(--tertiary);
+        }
+    }
+
+    &.invalid-field {
+        & label {
+            color: var(--error);
+        }
+
+        & .form-control {
+            border: 2px solid var(--error);
         }
     }
 }

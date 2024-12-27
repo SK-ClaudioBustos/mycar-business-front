@@ -1,6 +1,6 @@
+import { HTMLInputTypeAttribute } from "react";
 import { Control, Controller, FieldError, FieldValues, Path, useController } from "react-hook-form";
 import "./styles/Input.css";
-import { HTMLInputTypeAttribute } from "react";
 
 interface InputProps<T extends FieldValues> {
     label: string;
@@ -10,7 +10,7 @@ interface InputProps<T extends FieldValues> {
     type?: HTMLInputTypeAttribute | undefined;
 }
 
-export function Input<T extends FieldValues>({ label, name, control, errors, type="text" }: InputProps<T>) {
+export function Input<T extends FieldValues>({ label, name, control, errors, type = "text" }: InputProps<T>) {
     const {
         field,
     } = useController({
@@ -19,11 +19,11 @@ export function Input<T extends FieldValues>({ label, name, control, errors, typ
     });
     const id = `${field.name}_id`;
     return (
-        <div className="input-container">
+        <div className={`input-container ${errors ? "invalid-field" : "valid-field"}`}>
             <label htmlFor={name}>{label}</label>
             <Controller name={field.name} control={control} render={
                 ({ field }) =>
-                    <input id={id} type={type} autoComplete="off" {...field} className={`form-control ${errors ? "invalid-field" : "valid-field"}`} />
+                    <input id={id} type={type} autoComplete="off" {...field} className="form-control" />
             } />
             {errors && <p>{errors.message}</p>}
         </div>

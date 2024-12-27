@@ -30,17 +30,17 @@ const BUTTONS: ButtonData[] = [
 ];
 
 export const TableRow = ({ car }: Props) => {
-    const { id, company, model, KM } = car;
+    const { id, companyName, modelName, km } = car;
     return (
         <div className="table-row">
             <span>
-                {company}
+                {companyName}
             </span>
             <span>
-                {model}
+                {modelName}
             </span>
             <span>
-                {KM}
+                {km}
             </span>
             <div className="actions">
                 {

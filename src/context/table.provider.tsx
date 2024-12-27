@@ -37,9 +37,9 @@ export const TableProvider = ({ children }: TableProviderProps) => {
                 .then((response: Car[]) => {
                     const rows: CarItem[] = response.map((car) => ({
                         id: car.id,
-                        company: car.companyName,
-                        KM: car.km,
-                        model: car.modelName
+                        companyName: car.companyName,
+                        km: car.km,
+                        modelName: car.modelName
                     }));
                     setTableRows(rows);
                 })
@@ -49,7 +49,6 @@ export const TableProvider = ({ children }: TableProviderProps) => {
         } finally {
             setLoadingTableRows(false);
         }
-
     }, []);
 
     useEffect(() => {

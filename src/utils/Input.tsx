@@ -23,7 +23,10 @@ export function Input<T extends FieldValues>({ label, name, control, errors, typ
             <label htmlFor={name}>{label}</label>
             <Controller name={field.name} control={control} render={
                 ({ field }) =>
-                    <input id={id} type={type} autoComplete="off" {...field} className="form-control" />
+                    <input id={id} type={type} autoComplete="off" {...field} className="form-control" onChange={(e) => {
+                        const value = e.target.value;
+                        field.onChange(type === "number" ? parseFloat(value) || undefined : value);
+                    }} />
             } />
             {errors && <p>{errors.message}</p>}
         </div>

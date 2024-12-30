@@ -9,11 +9,13 @@ import { CarForm } from "./CarForm";
 import { carFormDefaultValues, CarFormValues, carSchema } from "./schema/car.schema";
 import "./styles/Form.css";
 import { useAlertStorage } from "@store/alert.store";
+import { useTableContext } from "@context/table.context";
 
 export const Form = () => {
     const setShowModal = useModalStorage((state) => state.setShowModal);
     const setShowAlert = useAlertStorage((state) => state.setAlert);
 
+    const { handleAddRow } = useTableContext();
     const [loading, setLoading] = useState(false);
     const { control, formState: { errors }, handleSubmit } = useForm<CarFormValues>({
         resolver: zodResolver(carSchema),
@@ -22,7 +24,7 @@ export const Form = () => {
     });
 
     const onSubmit: SubmitHandler<CarFormValues> = (data) => {
-        submitFormData({ data, setLoading, setShowModal, setShowAlert });
+        submitFormData({ data, handleAddRow, setLoading, setShowModal, setShowAlert });
     };
 
     return (

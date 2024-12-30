@@ -1,15 +1,17 @@
 import { CarFormValues } from "@components/Content/ModalContent/schema/car.schema";
+import { Car, CarItem } from "@type/car";
 import { AlertData } from "@type/types";
 import { Dispatch, SetStateAction } from "react";
 
 interface Props {
     data: CarFormValues;
+    handleAddRow: (newRow: CarItem) => void;
     setShowModal: (showModalState: boolean) => void;
     setLoading: Dispatch<SetStateAction<boolean>>;
     setShowAlert: (alert: AlertData) => void;
 }
 
-export const submitFormData = ({ data, setLoading, setShowModal, setShowAlert }: Props) => {
+export const submitFormData = ({ data, handleAddRow, setLoading, setShowModal, setShowAlert }: Props) => {
     setLoading(true);
     const carData = {
         companyName: data.companyName,
@@ -31,9 +33,8 @@ export const submitFormData = ({ data, setLoading, setShowModal, setShowAlert }:
             throw new Error(`Error ${response.status}`)
         }
         return response.json();
-    }).then((response) => {
-        console.log(response);
-        // TODO guardar respuesta para poder agregar mas filas en la tabla
+    }).then((response: Car) => {
+        handleAddRow(response);
         setShowAlert({
             isVisible: true,
             type: "success",

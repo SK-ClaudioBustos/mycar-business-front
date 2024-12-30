@@ -26,12 +26,12 @@ export default function Content() {
             <TableProvider>
                 <ButtonsContainer />
                 <Table />
+                <Modal>
+                    <ModalContent title="Add Car">
+                        <Form />
+                    </ModalContent>
+                </Modal>
             </TableProvider>
-            <Modal>
-                <ModalContent title="Add Car">
-                    <Form />
-                </ModalContent>
-            </Modal>
         </section>
     );
 }

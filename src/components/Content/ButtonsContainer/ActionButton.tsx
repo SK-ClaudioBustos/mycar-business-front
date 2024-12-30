@@ -9,8 +9,8 @@ export const ActionButton = (props: ActionButtonProps) => {
         onClick,
         children,
         tooltipLabel,
-        height = "60",
-        width = "60",
+        height = "60px",
+        width = "60px",
         className = "inherit",
         borderRadius = "0%",
         dropShadow = false

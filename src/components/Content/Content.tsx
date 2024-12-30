@@ -7,7 +7,7 @@ import { ButtonsContainer } from "./ButtonsContainer/ButtonsContainer";
 import { Form } from "./ModalContent/Form";
 import { ModalContent } from "./ModalContent/ModalContent";
 import "./styles/Content.css";
-import { Table } from "./Table";
+import { Table } from "./Table/Table";
 
 const Modal = lazy(() => import("@utils/Modal"));
 

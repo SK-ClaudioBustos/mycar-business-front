@@ -2,19 +2,12 @@ import { useTableContext } from "@context/table.context";
 import EyeIcon from "@icons/eye.svg?react";
 import PencilIcon from "@icons/pencil.svg?react";
 import TrashIcon from "@icons/trash.svg?react";
-import { CarItem } from "@type/car";
+import { useAlertStorage } from "@store/alert.store";
 import { ButtonData } from "@type/types";
 import { IconSVG } from "@utils/IconSVG";
-import { ActionButton } from "./ButtonsContainer/ActionButton";
-import "./styles/TableRow.css";
-import { useAlertStorage } from "@store/alert.store";
+import { ActionButton } from "../ButtonsContainer/ActionButton";
 
-interface Props {
-    car: CarItem
-}
-
-export const TableRow = ({ car }: Props) => {
-    const { id, companyName, modelName, km } = car;
+export const TableRowActions = ({ id }: { id: number }) => {
     const { handleDeleteRow } = useTableContext();
     const setAlert = useAlertStorage((state) => state.setAlert);
 
@@ -70,39 +63,27 @@ export const TableRow = ({ car }: Props) => {
             Icon: EyeIcon,
         }
     ];
-
     return (
-        <div className="table-row">
-            <span>
-                {companyName}
-            </span>
-            <span>
-                {modelName}
-            </span>
-            <span>
-                {km}
-            </span>
-            <div className="actions">
-                {
-                    BUTTONS.map((button) => {
-                        const idButton = `${button.id}-${id}`;
-                        return (
-                            (
-                                <ActionButton
-                                    key={idButton}
-                                    id={idButton}
-                                    tooltipLabel={button.tooltipLabel}
-                                    height="50" width="50"
-                                    borderRadius="50%"
-                                    onClick={button?.function || undefined}
-                                >
-                                    <IconSVG Icon={button.Icon} size={24} />
-                                </ActionButton>
-                            )
-                        );
-                    })
-                }
-            </div>
+        <div className="actions">
+            {
+                BUTTONS.map((button) => {
+                    const idButton = `${button.id}-${id}`;
+                    return (
+                        (
+                            <ActionButton
+                                key={idButton}
+                                id={idButton}
+                                tooltipLabel={button.tooltipLabel}
+                                height="40px" width="40px"
+                                borderRadius="50%"
+                                onClick={button?.function || undefined}
+                            >
+                                <IconSVG Icon={button.Icon} size={24} />
+                            </ActionButton>
+                        )
+                    );
+                })
+            }
         </div>
     );
 }

@@ -9,7 +9,7 @@ export const carSchema = z.object({
 export const carFormDefaultValues = {
     companyName: "",
     modelName: "",
-    km: undefined
+    km: 0
 };
 
 export type CarFormValues = z.infer<typeof carSchema>;

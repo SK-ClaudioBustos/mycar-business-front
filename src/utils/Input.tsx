@@ -20,12 +20,12 @@ export function Input<T extends FieldValues>({ label, name, control, errors, typ
     const id = `${field.name}_id`;
     return (
         <div className={`input-container ${errors ? "invalid-field" : "valid-field"}`}>
-            <label htmlFor={name}>{label}</label>
+            <label htmlFor={id}>{label}</label>
             <Controller name={field.name} control={control} render={
                 ({ field }) =>
                     <input id={id} type={type} autoComplete="off" {...field} className="form-control" onChange={(e) => {
                         const value = e.target.value;
-                        field.onChange(type === "number" ? parseFloat(value) || undefined : value);
+                        field.onChange(type === "number" ? parseFloat(value) || 0 : value);
                     }} />
             } />
             {errors && <p>{errors.message}</p>}

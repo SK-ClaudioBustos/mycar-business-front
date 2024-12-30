@@ -6,12 +6,12 @@ export interface CarFormControlProps {
     control: Control<{
         companyName: string;
         modelName: string;
-        km?: number;
+        km?: string;
     }>;
     errors: FieldErrors<{
         companyName: string;
         modelName: string;
-        km?: number;
+        km?: string;
     }>;
 }
 

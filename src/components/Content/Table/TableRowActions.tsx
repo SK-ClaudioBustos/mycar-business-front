@@ -36,12 +36,19 @@ export const TableRowActions = ({ id }: { id: number }) => {
                     });
                 })
                 .catch((error) => {
-                    // TODO informar de que hubo un error al eliminar la fila
-                    console.log(error);
+                    setAlert({
+                        isVisible: true,
+                        type: "error",
+                        message: `Error ${error.status}`
+                    });
                 });
-        } catch (error) {
-            // TODO informar de que hubo un error al eliminar la fila
-            console.log(error);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } catch (error: any) {
+            setAlert({
+                isVisible: true,
+                type: "error",
+                message: `Error ${error?.status}`
+            });
         }
     }
 

@@ -1,36 +1,76 @@
+import { useTableContext } from "@context/table.context";
 import EyeIcon from "@icons/eye.svg?react";
 import PencilIcon from "@icons/pencil.svg?react";
 import TrashIcon from "@icons/trash.svg?react";
 import { CarItem } from "@type/car";
 import { ButtonData } from "@type/types";
+import { IconSVG } from "@utils/IconSVG";
 import { ActionButton } from "./ButtonsContainer/ActionButton";
 import "./styles/TableRow.css";
-import { IconSVG } from "@utils/IconSVG";
+import { useAlertStorage } from "@store/alert.store";
 
 interface Props {
     car: CarItem
 }
 
-const BUTTONS: ButtonData[] = [
-    {
-        id: "edit-button",
-        tooltipLabel: "Edit",
-        Icon: PencilIcon
-    },
-    {
-        id: "delete",
-        tooltipLabel: "Delete",
-        Icon: TrashIcon
-    },
-    {
-        id: "details",
-        tooltipLabel: "Show Details",
-        Icon: EyeIcon
-    }
-];
-
 export const TableRow = ({ car }: Props) => {
     const { id, companyName, modelName, km } = car;
+    const { handleDeleteRow } = useTableContext();
+    const setAlert = useAlertStorage((state) => state.setAlert);
+
+    const handleDelete = () => {
+        try {
+            const url = `${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/api/cars/${id}`;
+            const fetchParams: RequestInit = {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                credentials: "include"
+            };
+            fetch(url, fetchParams)
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error(`Ocurrio un erro extraño ${response}`);
+                    }
+                    return response.json();
+                })
+                .then((response) => {
+                    handleDeleteRow(response.id);
+                    setAlert({
+                        isVisible: true,
+                        message: "The car was deleted successfully"
+                    });
+                })
+                .catch((error) => {
+                    // TODO informar de que hubo un error al eliminar la fila
+                    console.log(error);
+                });
+        } catch (error) {
+            // TODO informar de que hubo un error al eliminar la fila
+            console.log(error);
+        }
+    }
+
+    const BUTTONS: ButtonData[] = [
+        {
+            id: "edit-button",
+            tooltipLabel: "Edit",
+            Icon: PencilIcon,
+        },
+        {
+            id: "delete",
+            tooltipLabel: "Delete",
+            Icon: TrashIcon,
+            function: handleDelete
+        },
+        {
+            id: "details",
+            tooltipLabel: "Show Details",
+            Icon: EyeIcon,
+        }
+    ];
+
     return (
         <div className="table-row">
             <span>
@@ -54,6 +94,7 @@ export const TableRow = ({ car }: Props) => {
                                     tooltipLabel={button.tooltipLabel}
                                     height="50" width="50"
                                     borderRadius="50%"
+                                    onClick={button?.function || undefined}
                                 >
                                     <IconSVG Icon={button.Icon} size={24} />
                                 </ActionButton>

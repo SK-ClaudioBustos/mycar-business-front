@@ -16,6 +16,11 @@ export const TableProvider = ({ children }: TableProviderProps) => {
         setTableRows([...tableRows, newCar]);
     }
 
+    const handleDeleteRow = (idRow: number) => {
+        const filteredRows = tableRows.filter((item) => item.id !== idRow);
+        setTableRows(filteredRows);
+    }
+
     const fetchRows = useCallback(async () => {
         try {
             setLoadingTableRows(true);
@@ -60,7 +65,8 @@ export const TableProvider = ({ children }: TableProviderProps) => {
         tableRows,
         loadingTableRows,
         errorTableRows,
-        handleAddRow
+        handleAddRow,
+        handleDeleteRow
     }
 
     return (

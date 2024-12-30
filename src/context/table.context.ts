@@ -6,7 +6,8 @@ const initValue: TableContextType = {
     tableRows: [],
     loadingTableRows: false,
     errorTableRows: null,
-    handleAddRow: () => { }
+    handleAddRow: () => { },
+    handleDeleteRow: () => { }
 };
 
 export interface TableContextType {
@@ -14,7 +15,7 @@ export interface TableContextType {
     loadingTableRows: boolean,
     errorTableRows: ErrorData,
     handleAddRow: (newRow: CarItem) => void
-    // handleDeleteRow: (rowId: string) => void  
+    handleDeleteRow: (idRow: number) => void
 }
 
 export const TableContext = createContext<TableContextType>(initValue);

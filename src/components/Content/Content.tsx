@@ -12,15 +12,12 @@ import { Table } from "./Table/Table";
 const Modal = lazy(() => import("@utils/Modal"));
 
 export default function Content() {
-    const { loading, error } = useFetchToken(import.meta.env.VITE_EMAIL, import.meta.env.VITE_PASSWORD);
+    const { error } = useFetchToken(import.meta.env.VITE_EMAIL, import.meta.env.VITE_PASSWORD);
 
-    if (loading) {
-        return <Loading label="Loading Content" />;
-    }
     if (error) {
         return <Error label="Error on authentication" error={error} />;
     }
-
+    
     return (
         <section className="content">
             <TableProvider>

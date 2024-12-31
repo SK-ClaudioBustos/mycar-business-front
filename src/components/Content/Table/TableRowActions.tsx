@@ -42,7 +42,7 @@ export const TableRowActions = ({ id }: { id: number }) => {
                         message: `Error ${error.status}`
                     });
                 });
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
             setAlert({
                 isVisible: true,
@@ -57,17 +57,20 @@ export const TableRowActions = ({ id }: { id: number }) => {
             id: "edit-button",
             tooltipLabel: "Edit",
             Icon: PencilIcon,
+            labelArea: `Edit item with id ${id}`,
         },
         {
             id: "delete",
             tooltipLabel: "Delete",
             Icon: TrashIcon,
+            labelArea: `Delete item with id ${id}`,
             function: handleDelete
         },
         {
             id: "details",
             tooltipLabel: "Show Details",
             Icon: EyeIcon,
+            labelArea: `Show details from item with id ${id}`,
         }
     ];
     return (
@@ -80,8 +83,10 @@ export const TableRowActions = ({ id }: { id: number }) => {
                             <ActionButton
                                 key={idButton}
                                 id={idButton}
+                                height="40px"
+                                width="40px"
+                                ariaLabel={button.labelArea}
                                 tooltipLabel={button.tooltipLabel}
-                                height="40px" width="40px"
                                 borderRadius="50%"
                                 onClick={button?.function || undefined}
                             >

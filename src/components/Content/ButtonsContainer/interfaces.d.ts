@@ -2,6 +2,7 @@ export interface ButtonProps {
     children: ReactNode
     height: string;
     width: string;
+    ariaLabel: string;
     id?: string | null;
     className?: string;
     type?: "button" | "reset" | "submit" | undefined;

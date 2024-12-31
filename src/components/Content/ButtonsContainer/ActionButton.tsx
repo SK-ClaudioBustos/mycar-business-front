@@ -9,16 +9,18 @@ export const ActionButton = (props: ActionButtonProps) => {
         onClick,
         children,
         tooltipLabel,
+        ariaLabel,
         height = "60px",
         width = "60px",
         className = "inherit",
         borderRadius = "0%",
-        dropShadow = false
+        dropShadow = false,
     } = props;
     return (
         <CustomTooltip elementId={id} content={tooltipLabel}>
             <Button
                 id={id}
+                ariaLabel={ariaLabel}
                 height={height}
                 width={width}
                 className={className}

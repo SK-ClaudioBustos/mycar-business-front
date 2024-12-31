@@ -6,6 +6,7 @@ export const Button = (props: ButtonProps) => {
         children,
         width,
         height,
+        ariaLabel,
         id = null,
         className = "inherit",
         type = "button",
@@ -20,6 +21,7 @@ export const Button = (props: ButtonProps) => {
             className={dropShadow ? `button box-shadow ${className}` : `button ${className}`}
             onClick={onClick}
             type={type}
+            aria-label={ariaLabel}
         >
             {children}
         </button>

@@ -19,12 +19,14 @@ export const ButtonsContainer = () => {
             id: "refresh",
             tooltipLabel: "Refresh",
             Icon: RefreshIcon,
+            labelArea: "Refresh rows on table",
             function: () => { }
         },
         {
             id: "Add",
             tooltipLabel: "Add",
             Icon: PlusIcon,
+            labelArea: "Add a new item into the table",
             function: handleAdd
         }
     ];
@@ -38,6 +40,7 @@ export const ButtonsContainer = () => {
                         id={button.id}
                         height="60px"
                         width="60px"
+                        ariaLabel={button.labelArea}
                         onClick={button.function}
                         className="bg-white"
                         borderRadius="10%"

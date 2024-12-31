@@ -8,6 +8,7 @@ export interface NavItemData {
 export interface ButtonData {
     id: string;
     tooltipLabel: string;
+    labelArea: string;
     Icon: FunctionComponent<SVGProps<SVGSVGElement>>;
     function?: () => void;
 }

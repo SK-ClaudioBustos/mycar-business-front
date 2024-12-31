@@ -34,7 +34,7 @@ export const Form = () => {
                     ? (<Loading label="Uploading new Car" />)
                     : (<CarForm control={control} errors={errors} />)
             }
-            <Button type="submit" className="bg-blue" height="40px" width="100%" borderRadius="5px">Submit</Button>
+            <Button ariaLabel="Submit form" type="submit" className="bg-blue" height="40px" width="100%" borderRadius="5px">Submit</Button>
         </form>
     );
 }

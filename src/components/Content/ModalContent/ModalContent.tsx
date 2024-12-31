@@ -11,7 +11,7 @@ export const ModalContent = ({ title, children }: { title: string, children: Rea
         <div className="modal-content">
             <div className="modal-header">
                 <span>{title}</span>
-                <Button onClick={() => setShowModal(false)} className="btn-close" height="50px" width="50px" borderRadius="50%">
+                <Button ariaLabel="Close modal" onClick={() => setShowModal(false)} className="btn-close" height="50px" width="50px" borderRadius="50%">
                     <IconSVG color="white" Icon={CloseIcon} />
                 </Button>
             </div>

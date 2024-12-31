@@ -1,12 +1,12 @@
 import { CarFormValues } from "@components/Content/ModalContent/schema/car.schema";
 import { Car, CarItem } from "@type/car";
-import { AlertData } from "@type/types";
+import { AlertData, ModalType } from "@type/types";
 import { Dispatch, SetStateAction } from "react";
 
 interface Props {
     data: CarFormValues;
     handleAddRow: (newRow: CarItem) => void;
-    setShowModal: (showModalState: boolean) => void;
+    setShowModal: (modalData: ModalType) => void;
     setLoading: Dispatch<SetStateAction<boolean>>;
     setShowAlert: (alert: AlertData) => void;
 }
@@ -48,6 +48,8 @@ export const submitFormData = ({ data, handleAddRow, setLoading, setShowModal, s
         });
     }).finally(() => {
         setLoading(false);
-        setShowModal(false);
+        setShowModal({
+            showModal: false,
+        });
     });
 }

@@ -11,9 +11,9 @@ const eventListener = "keydown";
 
 export default function Modal({ children }: Props) {
     const modalRef = useRef<HTMLDivElement>(null)
-    const showModal = useModalStorage((state) => state.showModal);
+    const showModal = useModalStorage((state) => state.modalData.showModal);
     const setShowModal = useModalStorage((state) => state.setShowModal);
-    const closeModal = () => { setShowModal(false) }
+    const closeModal = () => { setShowModal({ showModal: false}) }
 
     // Obtener el elemento padre del modal
     const modalRoot = document.getElementById("modal")
@@ -27,7 +27,7 @@ export default function Modal({ children }: Props) {
         // Shortcut to close the modal 
         const handleEsc = (e: KeyboardEvent) => {
             if (e.key === "Escape") {
-                setShowModal(false)
+                closeModal();
             }
         }
         if (showModal) {

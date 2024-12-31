@@ -25,7 +25,7 @@ export default function Content() {
                 <Table />
                 <Suspense fallback={<Loading label="Loading Modal" />}>
                     <Modal>
-                        <ModalContent title="Add Car">
+                        <ModalContent>
                             <Form />
                         </ModalContent>
                     </Modal>

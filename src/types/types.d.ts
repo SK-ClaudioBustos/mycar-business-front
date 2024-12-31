@@ -22,3 +22,16 @@ export interface AlertData {
     duration?: number;
 }
 
+export interface ModalData {
+    showModal: boolean;
+    title?: string | null;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    data?: Record<string,any> | null
+}
+
+export type ModalType = ModalData;
+
+export interface TableRowProps {
+    item: CarItem
+}
+

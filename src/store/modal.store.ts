@@ -1,18 +1,29 @@
+import { ModalType } from '@type/types';
 import { create, StateCreator } from 'zustand';
 
 interface ModalStorageState {
-    showModal: boolean
+    modalData: ModalType
 }
 
 interface Actions {
-    setShowModal: (showModalState: boolean) => void
+    setShowModal: (modalData: ModalType) => void
 }
 
 type ModalData = ModalStorageState & Actions;
 
 const modalApi: StateCreator<ModalData> = (set) => ({
-    showModal: false,
-    setShowModal: (showModalState) => { set(() => ({ showModal: showModalState })) }
+    modalData: {
+        showModal: false,
+    },
+    setShowModal: ({ showModal, data = null, title = "" }) => {
+        set(() => ({
+            modalData: {
+                showModal,
+                title,
+                data,
+            }
+        }))
+    }
 });
 
 export const useModalStorage = create<ModalData>(modalApi);

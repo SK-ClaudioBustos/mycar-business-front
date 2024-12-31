@@ -5,13 +5,14 @@ import { IconSVG } from "@utils/IconSVG";
 import { ReactNode } from "react";
 import "./styles/ModalContent.css";
 
-export const ModalContent = ({ title, children }: { title: string, children: ReactNode }) => {
+export const ModalContent = ({ children }: { children: ReactNode }) => {
     const setShowModal = useModalStorage((state) => state.setShowModal);
+    const title = useModalStorage((state) => state.modalData?.title);
     return (
         <div className="modal-content">
             <div className="modal-header">
                 <span>{title}</span>
-                <Button ariaLabel="Close modal" onClick={() => setShowModal(false)} className="btn-close" height="50px" width="50px" borderRadius="50%">
+                <Button ariaLabel="Close modal" onClick={() => setShowModal({ showModal: false })} className="btn-close" height="50px" width="50px" borderRadius="50%">
                     <IconSVG color="white" Icon={CloseIcon} />
                 </Button>
             </div>

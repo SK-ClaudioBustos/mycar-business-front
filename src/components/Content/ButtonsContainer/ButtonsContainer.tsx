@@ -11,7 +11,11 @@ export const ButtonsContainer = () => {
     const setShowModal = useModalStorage((state) => state.setShowModal);
 
     const handleAdd = () => {
-        setShowModal(true);
+        setShowModal({
+            showModal: true,
+            title: "Add Car",
+            data: null,
+        });
     }
 
     const BUTTONS: ButtonData[] = [

@@ -1,3 +1,11 @@
+@font-face {
+    font-family: 'Montserrat-bold';
+    src: url("@font/Montserrat-Bold.ttf") type("truetype");
+    font-weight: bold;
+    font-display: swap;
+}
+
+
 .table {
     background-color: var(--secondary);
     border-radius: 10px;

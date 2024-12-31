@@ -4,7 +4,7 @@ import { Error } from "@utils/Error";
 import { Loading } from "@utils/Loading";
 import { lazy, Suspense } from "react";
 import { ButtonsContainer } from "./ButtonsContainer/ButtonsContainer";
-import { Form } from "./ModalContent/Form";
+import { Form } from "./ModalContent/Form/Form";
 import { ModalContent } from "./ModalContent/ModalContent";
 import "./styles/Content.css";
 import { Table } from "./Table/Table";

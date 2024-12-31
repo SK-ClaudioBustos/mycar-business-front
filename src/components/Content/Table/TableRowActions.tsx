@@ -3,12 +3,15 @@ import EyeIcon from "@icons/eye.svg?react";
 import PencilIcon from "@icons/pencil.svg?react";
 import TrashIcon from "@icons/trash.svg?react";
 import { useAlertStorage } from "@store/alert.store";
-import { ButtonData } from "@type/types";
+import { useModalStorage } from "@store/modal.store";
+import { ButtonData, TableRowProps } from "@type/types";
 import { IconSVG } from "@utils/IconSVG";
 import { ActionButton } from "../ButtonsContainer/ActionButton";
 
-export const TableRowActions = ({ id }: { id: number }) => {
+export const TableRowActions = ({ item }: TableRowProps) => {
+    const { id } = item;
     const { handleDeleteRow } = useTableContext();
+    const setShowModal = useModalStorage((state) => state.setShowModal);
     const setAlert = useAlertStorage((state) => state.setAlert);
 
     const handleDelete = () => {
@@ -52,12 +55,21 @@ export const TableRowActions = ({ id }: { id: number }) => {
         }
     }
 
+    const handleEdit = () => {
+        setShowModal({
+            showModal: true,
+            title: "Edit Car",
+            data: item
+        });
+    }
+
     const BUTTONS: ButtonData[] = [
         {
             id: "edit-button",
             tooltipLabel: "Edit",
             Icon: PencilIcon,
             labelArea: `Edit item with id ${id}`,
+            function: handleEdit
         },
         {
             id: "delete",

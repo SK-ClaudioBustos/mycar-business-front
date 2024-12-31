@@ -1,12 +1,8 @@
-import { CarItem } from "@type/car";
+import { TableRowProps } from "@type/types";
 import { TableRowActions } from "./TableRowActions";
 
-interface Props {
-    item: CarItem
-}
-
-export const TableRow = ({ item }: Props) => {
-    const { id, companyName, modelName, km } = item;
+export const TableRow = ({ item }: TableRowProps) => {
+    const { companyName, modelName, km } = item;
 
     return (
         <div className="table-row">
@@ -19,7 +15,7 @@ export const TableRow = ({ item }: Props) => {
             <span>
                 {km}
             </span>
-            <TableRowActions id={id} />
+            <TableRowActions item={item} />
         </div>
     );
 }

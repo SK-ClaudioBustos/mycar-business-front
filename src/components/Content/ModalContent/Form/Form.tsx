@@ -1,26 +1,26 @@
+import { useTableContext } from "@context/table.context";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { submitFormData } from "@services/submitFormData";
+import { useAlertStorage } from "@store/alert.store";
 import { useModalStorage } from "@store/modal.store";
 import { Button } from "@utils/Button";
 import { Loading } from "@utils/Loading";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { carFormDefaultValues, CarFormValues, carSchema } from "../schema/car.schema";
 import { CarForm } from "./CarForm";
-import { carFormDefaultValues, CarFormValues, carSchema } from "./schema/car.schema";
 import "./styles/Form.css";
-import { useAlertStorage } from "@store/alert.store";
-import { useTableContext } from "@context/table.context";
 
 export const Form = () => {
+    const formData = useModalStorage((state) => state.modalData.data);
     const setShowModal = useModalStorage((state) => state.setShowModal);
     const setShowAlert = useAlertStorage((state) => state.setAlert);
-
     const { handleAddRow } = useTableContext();
     const [loading, setLoading] = useState(false);
     const { control, formState: { errors }, handleSubmit } = useForm<CarFormValues>({
         resolver: zodResolver(carSchema),
         mode: "onChange",
-        defaultValues: carFormDefaultValues,
+        defaultValues: formData ? formData : carFormDefaultValues,
     });
 
     const onSubmit: SubmitHandler<CarFormValues> = (data) => {

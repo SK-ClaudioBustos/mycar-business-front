@@ -1,5 +1,5 @@
 .nav-item {
-    --inactive-color: color-mix(in srgb, var(--quaternary), #fff 50%);
+    --inactive-color: color-mix(in srgb, var(--quaternary), #000 15%);
     border-bottom: 10px solid var(--inactive-color);
     height: 70px;
     display: flex;

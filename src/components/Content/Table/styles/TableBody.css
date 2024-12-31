@@ -16,7 +16,7 @@
 
         & span {
             flex: 1 1 0;
-            color: var(--quaternary);
+            color: color-mix(in srgb, var(--quaternary), #000 20%);
             font-size: 1em;
             text-align: center;
         }

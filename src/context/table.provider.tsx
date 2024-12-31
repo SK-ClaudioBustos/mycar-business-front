@@ -21,7 +21,7 @@ export const TableProvider = ({ children }: TableProviderProps) => {
         setTableRows(filteredRows);
     }
 
-    const fetchRows = useCallback(async () => {
+    const fetchRows = useCallback(async (controller: AbortController) => {
         try {
             setLoadingTableRows(true);
             const API_URL = `${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/api/cars`;
@@ -30,7 +30,8 @@ export const TableProvider = ({ children }: TableProviderProps) => {
                 credentials: "include",
                 headers: {
                     "Content-Type": "application/json",
-                }
+                },
+                signal: controller.signal
             }
             await fetch(API_URL, requestParams)
                 .then((response) => {
@@ -57,7 +58,11 @@ export const TableProvider = ({ children }: TableProviderProps) => {
     }, []);
 
     useEffect(() => {
-        fetchRows();
+        const controller = new AbortController();
+        fetchRows(controller);
+        return () => {
+            return controller.abort();
+        }
     }, []);
 
 

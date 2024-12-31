@@ -8,7 +8,7 @@ interface FetchData {
 export const useFetchToken = (email: string, password: string): FetchData => {
     const [error, setError] = useState<ErrorData>(null);
 
-    const fetchToken = async () => {
+    const fetchToken = async (controller: AbortController) => {
         const LOGIN_URL = `${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/api/auth/login`;
         try {
             const requestParams: RequestInit = {
@@ -17,7 +17,8 @@ export const useFetchToken = (email: string, password: string): FetchData => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ email, password })
+                body: JSON.stringify({ email, password }),
+                signal: controller.signal
             }
 
             const response = await fetch(LOGIN_URL, requestParams);
@@ -32,7 +33,12 @@ export const useFetchToken = (email: string, password: string): FetchData => {
     }
 
     useEffect(() => {
-        fetchToken();
+        const controller = new AbortController();
+        fetchToken(controller);
+
+        return () => {
+            controller.abort();
+        }
     }, []);
     return {
         error,

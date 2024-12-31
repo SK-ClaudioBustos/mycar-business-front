@@ -1,14 +1,9 @@
 import { NavBar } from "@components/Navbar/NavBar";
-import { useAlertStorage } from "@store/alert.store";
 import { Loading } from "@utils/Loading";
-import { lazy, Suspense } from "react";
+import { ReactNode, Suspense } from "react";
 import "./Layout.css";
-const Alert = lazy(() => import("@utils/Alert"));
-const Content = lazy(() => import("@components/Content/Content.tsx"));
 
-export const Layout = () => {
-    const alert = useAlertStorage((state) => state.alert);
-
+export const Layout = ({ children }: { children: ReactNode }) => {
     return (
         <div className="layout">
             <header>
@@ -16,10 +11,9 @@ export const Layout = () => {
             </header>
             <main>
                 <Suspense fallback={<div className="flex-center"><Loading label="Loading Content" /></div>}>
-                    <Content />
+                    {children}
                 </Suspense>
             </main>
-            <Alert alert={alert} />
         </div>
     );
 }

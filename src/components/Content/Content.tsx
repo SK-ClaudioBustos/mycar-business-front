@@ -2,7 +2,7 @@ import { TableProvider } from "@context/table.provider";
 import { useFetchToken } from "@services/authService";
 import { Error } from "@utils/Error";
 import { Loading } from "@utils/Loading";
-import { lazy } from "react";
+import { lazy, Suspense } from "react";
 import { ButtonsContainer } from "./ButtonsContainer/ButtonsContainer";
 import { Form } from "./ModalContent/Form";
 import { ModalContent } from "./ModalContent/ModalContent";
@@ -26,11 +26,13 @@ export default function Content() {
             <TableProvider>
                 <ButtonsContainer />
                 <Table />
-                <Modal>
-                    <ModalContent title="Add Car">
-                        <Form />
-                    </ModalContent>
-                </Modal>
+                <Suspense fallback={<Loading label="Loading Modal" />}>
+                    <Modal>
+                        <ModalContent title="Add Car">
+                            <Form />
+                        </ModalContent>
+                    </Modal>
+                </Suspense>
             </TableProvider>
         </section>
     );

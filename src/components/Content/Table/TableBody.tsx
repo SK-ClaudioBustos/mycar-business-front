@@ -10,7 +10,7 @@ export const TableBody = () => {
     if (loadingTableRows) {
         return (
             <div className="table-body flex-center">
-                <Loading label="Loading Cars" />
+                <Loading label="Loading Rows" />
             </div>
         );
     }

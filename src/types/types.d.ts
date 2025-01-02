@@ -22,7 +22,7 @@ export interface AlertData {
     duration?: number;
 }
 
-export type ModalAction = "create" | "edit" | null;
+export type ModalAction = "create" | "edit" | "showDetails" | null;
 
 export interface ModalData {
     showModal: boolean;

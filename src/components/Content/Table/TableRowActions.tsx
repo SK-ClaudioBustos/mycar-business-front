@@ -64,6 +64,15 @@ export const TableRowActions = ({ item }: TableRowProps) => {
         });
     }
 
+    const handleShowDetails = () => {
+        setShowModal({
+            showModal: true,
+            action: "showDetails",
+            title: "Show Details",
+            data: item
+        }); 
+    }
+
     const BUTTONS: ButtonData[] = [
         {
             id: "edit-button",
@@ -84,6 +93,7 @@ export const TableRowActions = ({ item }: TableRowProps) => {
             tooltipLabel: "Show Details",
             Icon: EyeIcon,
             labelArea: `Show details from item with id ${id}`,
+            function: handleShowDetails
         }
     ];
     return (

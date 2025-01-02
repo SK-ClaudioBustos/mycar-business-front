@@ -2,7 +2,7 @@ import { useTableContext } from "@context/table.context";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { submitFormData } from "@services/submitFormData";
 import { useAlertStorage } from "@store/alert.store";
-import { useModalStorage } from "@store/modal.store";
+import { ModalAction, ModalType } from "@type/types";
 import { Button } from "@utils/Button";
 import { Loading } from "@utils/Loading";
 import { useState } from "react";
@@ -11,10 +11,14 @@ import { carFormDefaultValues, CarFormValues, carSchema } from "../schema/car.sc
 import { CarForm } from "./CarForm";
 import "./styles/Form.css";
 
-export const Form = () => {
-    const formData = useModalStorage((state) => state.modalData.data);
-    const action = useModalStorage((state) => state.modalData.action);
-    const setShowModal = useModalStorage((state) => state.setShowModal);
+interface FormProps {
+    action: ModalAction | undefined;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    data: Record<string, any> | null | undefined;
+    setShowModal: (modalData: ModalType) => void;
+}
+
+export const Form = ({ action, data, setShowModal }: FormProps) => {
     const setShowAlert = useAlertStorage((state) => state.setAlert);
 
     const { handleAddRow } = useTableContext();
@@ -22,7 +26,7 @@ export const Form = () => {
     const { control, formState: { errors }, handleSubmit } = useForm<CarFormValues>({
         resolver: zodResolver(carSchema),
         mode: "onChange",
-        defaultValues: formData ? formData : carFormDefaultValues,
+        defaultValues: action === "edit" ? { companyName: data?.companyName, modelName: data?.modelName, km: data?.km } : carFormDefaultValues,
     });
 
     const onSubmit: SubmitHandler<CarFormValues> = (data) => {
@@ -37,8 +41,25 @@ export const Form = () => {
                     : (<CarForm control={control} errors={errors} />)
             }
             <div>
-                <Button ariaLabel="Submit form" type="submit" className="bg-blue" height="40px" width="100%" borderRadius="5px">Submit</Button>
-                <Button onClick={() => setShowModal({ showModal: false })} ariaLabel="Submit form" type="button" className="bg-gray" height="40px" width="100%" borderRadius="5px">Cancel</Button>
+                <Button
+                    ariaLabel="Submit form"
+                    type="submit"
+                    className="bg-blue"
+                    height="40px"
+                    width="100%"
+                    borderRadius="5px">
+                    Submit
+                </Button>
+                <Button
+                    onClick={() => setShowModal({ showModal: false })}
+                    ariaLabel="Submit form"
+                    type="button"
+                    className="bg-gray"
+                    height="40px"
+                    width="100%"
+                    borderRadius="5px">
+                    Cancel
+                </Button>
             </div>
         </form>
     );

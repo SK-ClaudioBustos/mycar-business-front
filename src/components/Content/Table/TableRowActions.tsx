@@ -58,6 +58,7 @@ export const TableRowActions = ({ item }: TableRowProps) => {
     const handleEdit = () => {
         setShowModal({
             showModal: true,
+            action: "edit",
             title: "Edit Car",
             data: item
         });

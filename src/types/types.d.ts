@@ -22,11 +22,14 @@ export interface AlertData {
     duration?: number;
 }
 
+export type ModalAction = "create" | "edit" | null;
+
 export interface ModalData {
     showModal: boolean;
+    action?: ModalAction,
     title?: string | null;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    data?: Record<string,any> | null
+    data?: Record<string, any> | null
 }
 
 export type ModalType = ModalData;

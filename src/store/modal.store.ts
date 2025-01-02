@@ -15,11 +15,12 @@ const modalApi: StateCreator<ModalData> = (set) => ({
     modalData: {
         showModal: false,
     },
-    setShowModal: ({ showModal, data = null, title = "" }) => {
+    setShowModal: ({ showModal, action=null, data = null, title = "" }) => {
         set(() => ({
             modalData: {
                 showModal,
                 title,
+                action,
                 data,
             }
         }))

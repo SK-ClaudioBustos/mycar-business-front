@@ -13,8 +13,10 @@ import "./styles/Form.css";
 
 export const Form = () => {
     const formData = useModalStorage((state) => state.modalData.data);
+    const action = useModalStorage((state) => state.modalData.action);
     const setShowModal = useModalStorage((state) => state.setShowModal);
     const setShowAlert = useAlertStorage((state) => state.setAlert);
+
     const { handleAddRow } = useTableContext();
     const [loading, setLoading] = useState(false);
     const { control, formState: { errors }, handleSubmit } = useForm<CarFormValues>({
@@ -24,7 +26,7 @@ export const Form = () => {
     });
 
     const onSubmit: SubmitHandler<CarFormValues> = (data) => {
-        submitFormData({ data, handleAddRow, setLoading, setShowModal, setShowAlert });
+        submitFormData({ data, action, handleAddRow, setLoading, setShowModal, setShowAlert });
     };
 
     return (

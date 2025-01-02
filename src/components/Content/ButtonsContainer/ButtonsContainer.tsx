@@ -13,6 +13,7 @@ export const ButtonsContainer = () => {
     const handleAdd = () => {
         setShowModal({
             showModal: true,
+            action: "create",
             title: "Add Car",
             data: null,
         });

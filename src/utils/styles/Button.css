@@ -24,8 +24,16 @@
         }
     }
 
+    &.bg-gray {
+        background: #c1c1c1;
+        color: var(--secondary);
+
+        &:hover {
+            background: color-mix(in srgb, var(--secondary), #000 15%);
+        }
+    }
+
     &.bg-blue {
-        font-size: 1.2rem;
         color: var(--secondary);
         background-color: var(--tertiary);
 

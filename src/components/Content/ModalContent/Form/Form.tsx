@@ -36,7 +36,10 @@ export const Form = () => {
                     ? (<Loading label="Uploading new Car" />)
                     : (<CarForm control={control} errors={errors} />)
             }
-            <Button ariaLabel="Submit form" type="submit" className="bg-blue" height="40px" width="100%" borderRadius="5px">Submit</Button>
+            <div>
+                <Button ariaLabel="Submit form" type="submit" className="bg-blue" height="40px" width="100%" borderRadius="5px">Submit</Button>
+                <Button onClick={() => setShowModal({ showModal: false })} ariaLabel="Submit form" type="button" className="bg-gray" height="40px" width="100%" borderRadius="5px">Cancel</Button>
+            </div>
         </form>
     );
 }

@@ -1,12 +1,13 @@
 import { NavItemData } from "@type/types";
 import "./styles/NavItem.css";
+import { NavLink } from "react-router";
 
-type Props = NavItemData & { tabSeleccionada: string };
+type Props = NavItemData;
 
-export const NavItem = ({ tabSeleccionada, label, section }: Props) => {
+export const NavItem = ({ label, section }: Props) => {
     return (
-        <div className={tabSeleccionada === section ? "nav-item selected" : "nav-item"} id={section}>
+        <NavLink to={`/${section}`} className="nav-item" id={section} viewTransition>
             <span>{label}</span>
-        </div>
+        </NavLink>
     );
 }

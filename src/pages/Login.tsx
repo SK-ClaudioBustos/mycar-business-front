@@ -1,4 +1,4 @@
-import { useFetchToken } from "@services/authService";
+import { useAuthentication } from "@services/useAuthentication";
 import { Button } from "@utils/Button";
 import { Error } from "@utils/Error";
 import { Loading } from "@utils/Loading";
@@ -6,7 +6,7 @@ import { useNavigate } from "react-router";
 import "./styles/login.css";
 
 export const Login = () => {
-    const { loading, error } = useFetchToken(import.meta.env.VITE_EMAIL, import.meta.env.VITE_PASSWORD);
+    const { loading, error } = useAuthentication(import.meta.env.VITE_EMAIL, import.meta.env.VITE_PASSWORD);
     const navigate = useNavigate();
 
     if (loading) {

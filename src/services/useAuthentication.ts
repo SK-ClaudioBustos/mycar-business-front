@@ -2,13 +2,16 @@ import { ErrorData } from "@type/types";
 import { useEffect, useState } from "react";
 
 interface FetchData {
+    loading: boolean
     error: ErrorData
 }
 
-export const useFetchToken = (email: string, password: string): FetchData => {
+export const useAuthentication = (email: string, password: string): FetchData => {
     const [error, setError] = useState<ErrorData>(null);
+    const [loading, setLoading] = useState(false);
 
     const fetchToken = async (controller: AbortController) => {
+        setLoading(true);
         const LOGIN_URL = `${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/api/auth/login`;
         try {
             const requestParams: RequestInit = {
@@ -26,9 +29,11 @@ export const useFetchToken = (email: string, password: string): FetchData => {
                 throw new Error(`Error ${response.status}: failed to fetch token`);
             }
 
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
             setError(error);
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -40,7 +45,9 @@ export const useFetchToken = (email: string, password: string): FetchData => {
             controller.abort();
         }
     }, []);
+
     return {
+        loading,
         error,
     };
 };

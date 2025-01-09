@@ -43,6 +43,7 @@ export const ButtonsContainer = () => {
                     <ActionButton
                         key={button.id}
                         id={button.id}
+                        tooltipVariant="light"
                         height="60px"
                         width="60px"
                         ariaLabel={button.labelArea}

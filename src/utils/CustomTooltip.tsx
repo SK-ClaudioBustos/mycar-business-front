@@ -1,24 +1,25 @@
 import { ReactNode } from "react";
-import { PlacesType, Tooltip } from "react-tooltip";
+import { PlacesType, Tooltip, VariantType } from "react-tooltip";
 import "./styles/CustomTooltip.css";
 
 interface Props {
     elementId: string;
     content: string;
-    children: ReactNode
+    children: ReactNode;
+    variant?: VariantType;
     place?: PlacesType | undefined;
 }
 
-export const CustomTooltip = ({ elementId, content, children, place = "bottom" }: Props) => {
+export const CustomTooltip = ({ elementId, content, children, variant="light", place = "bottom" }: Props) => {
     return (
         <>
             {children}
             <Tooltip
-                className="tooltip box-shadow"
+                className="tooltip"
                 anchorSelect={`#${elementId}`}
                 place={place}
                 content={content}
-                variant="info"
+                variant={variant}
             />
         </>
     );

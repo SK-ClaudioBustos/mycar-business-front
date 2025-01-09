@@ -6,18 +6,19 @@ import "./styles/ActionButton.css";
 export const ActionButton = (props: ActionButtonProps) => {
     const {
         id,
-        onClick,
         children,
         tooltipLabel,
         ariaLabel,
+        tooltipVariant = "light",
         height = "60px",
         width = "60px",
         className = "inherit",
         borderRadius = "0%",
         dropShadow = false,
+        onClick,
     } = props;
     return (
-        <CustomTooltip elementId={id} content={tooltipLabel}>
+        <CustomTooltip elementId={id} content={tooltipLabel} variant={tooltipVariant}>
             <Button
                 id={id}
                 ariaLabel={ariaLabel}

@@ -106,6 +106,7 @@ export const TableRowActions = ({ item }: TableRowProps) => {
                             <ActionButton
                                 key={idButton}
                                 id={idButton}
+                                tooltipVariant="info"
                                 height="40px"
                                 width="40px"
                                 ariaLabel={button.labelArea}

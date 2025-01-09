@@ -1,7 +1,7 @@
 .tooltip {
     /* Tooltip overrides */
     --rt-color-white: var(--secondary);
-    --rt-color-dark: color-mix(in srgb, var(--quaternary), #fff 60%);
+    --rt-color-dark: var(--quaternary);
     --rt-color-info: var(--tertiary);
     --rt-opacity: 1;
     

@@ -1,5 +1,5 @@
 .layout {
-    width: 95vw;
+    width: min(1980px,95vw);
     height: 100%;
     margin: 20px auto;
 }

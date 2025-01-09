@@ -1,7 +1,7 @@
 .nav-item {
     --inactive-color: color-mix(in srgb, var(--quaternary), #000 15%);
     border-bottom: 10px solid var(--inactive-color);
-    height: 70px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -10,7 +10,7 @@
     cursor: pointer;
 
     & span {
-        font-size: 1.3em;
+        font-size: 1.2rem;
         color: var(--inactive-color);
     }
 

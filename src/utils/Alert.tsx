@@ -29,13 +29,8 @@ export default function Alert({ alert }: Props) {
             </div>
             <div>
                 <p>
-                    <b>
-                        {`${type[0].toLocaleUpperCase()}${type.slice(1)}`}
-                    </b>
-                </p>
-                <span>
                     {message}
-                </span>
+                </p>
             </div>
         </div>
     );

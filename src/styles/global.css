@@ -1,3 +1,34 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: Montserrat;
+    src: url("/src/font/Montserrat-Medium.ttf") format("truetype");
+    font-display: swap;
+}
+
+:root {
+    --primary: #DFDEDE;
+    --secondary: #f1f1f1;
+    --tertiary: #4D80F7;
+    --quaternary: #757575;
+    --error: #ef4c4c;
+    --success: var(--tertiary);
+}
+
+
+body {
+    height: 100%;
+    background-color: var(--primary);
+    color: var(--secondary);
+    font-family: Montserrat, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
 .flex-center {
     display: flex;
     justify-content: center;

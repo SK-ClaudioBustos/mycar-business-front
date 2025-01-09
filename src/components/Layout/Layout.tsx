@@ -1,15 +1,21 @@
 import { NavBar } from "@components/Navbar/NavBar";
-import { ReactNode } from "react";
+import { useAlertStorage } from "@store/alert.store";
+import { lazy } from "react";
+import { Outlet } from "react-router";
 import "./Layout.css";
+const Alert = lazy(() => import("@utils/Alert"));
 
-export const Layout = ({ children }: { children: ReactNode }) => {
+
+export const Layout = () => {
+    const alert = useAlertStorage((state) => state.alert);
     return (
         <div className="layout">
             <header>
                 <NavBar />
             </header>
             <main>
-                {children}
+                <Outlet />
+                <Alert alert={alert} />
             </main>
         </div>
     );

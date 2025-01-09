@@ -1,0 +1,14 @@
+.login {
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .login-content {
+        width: 400px;
+        padding: 10px 20px;
+        background-color: var(--secondary);
+        border-radius: 5px;
+    }
+}

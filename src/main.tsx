@@ -1,6 +1,6 @@
-import { createRoot } from 'react-dom/client'
-import App from './App.tsx'
+import { createRoot } from 'react-dom/client';
+import { AppRouter } from './routes/AppRouter';
 
 createRoot(document.getElementById('root')!).render(
-  <App />
+  <AppRouter />
 )

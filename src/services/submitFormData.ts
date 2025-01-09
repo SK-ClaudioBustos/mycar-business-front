@@ -40,7 +40,7 @@ export const submitFormData = ({ data, action, handleAddRow, setLoading, setShow
         setShowAlert({
             isVisible: true,
             type: "success",
-            message: action === "create" ? "Car added" : "Car edited"
+            message: action === "create" ? "Car added successfully" : "Car edited successfully"
         });
     }).catch((error: Error) => {
         setShowAlert({

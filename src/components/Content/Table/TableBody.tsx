@@ -8,11 +8,7 @@ export const TableBody = () => {
     const { tableRows, loadingTableRows, errorTableRows } = useTableContext();
 
     if (loadingTableRows) {
-        return (
-            <div className="table-body flex-center">
-                <Loading label="Loading Rows" />
-            </div>
-        );
+        return <Loading label="Loading Rows" />;
     }
 
     if (errorTableRows) {

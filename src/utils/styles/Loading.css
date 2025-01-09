@@ -3,7 +3,7 @@
     flex-direction: column;
     gap: .5rem;
 
-    height: 50vh;
+    min-height: 100px;
 
     & .loader-text {
         font-size: 1.5rem;

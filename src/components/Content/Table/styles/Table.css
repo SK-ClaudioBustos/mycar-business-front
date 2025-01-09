@@ -15,10 +15,10 @@
         background-color: var(--tertiary);
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
-        padding: 0 30px;
+        padding: 0 25px;
 
         & .table-header {    
-            height: 80px;
+            height: 65px;
             width: 100%;
             padding: 0 15px;
 

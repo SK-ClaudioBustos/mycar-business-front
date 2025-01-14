@@ -2,6 +2,7 @@ import { useTableContext } from "@context/table.context";
 import EyeIcon from "@icons/eye.svg?react";
 import PencilIcon from "@icons/pencil.svg?react";
 import TrashIcon from "@icons/trash.svg?react";
+import { handleDeleteCar } from "@services/car/handleDelete";
 import { useAlertStorage } from "@store/alert.store";
 import { useModalStorage } from "@store/modal.store";
 import { ButtonData, TableRowProps } from "@type/types";
@@ -15,44 +16,7 @@ export const TableRowActions = ({ item }: TableRowProps) => {
     const setAlert = useAlertStorage((state) => state.setAlert);
 
     const handleDelete = () => {
-        try {
-            const url = `${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/api/cars/${id}`;
-            const fetchParams: RequestInit = {
-                method: "DELETE",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                credentials: "include"
-            };
-            fetch(url, fetchParams)
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error(`Ocurrio un erro extraño ${response}`);
-                    }
-                    return response.json();
-                })
-                .then((response) => {
-                    handleDeleteRow(response.id);
-                    setAlert({
-                        isVisible: true,
-                        message: "The car was deleted successfully"
-                    });
-                })
-                .catch((error) => {
-                    setAlert({
-                        isVisible: true,
-                        type: "error",
-                        message: `Error ${error.status}`
-                    });
-                });
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        } catch (error: any) {
-            setAlert({
-                isVisible: true,
-                type: "error",
-                message: `Error ${error?.status}`
-            });
-        }
+        handleDeleteCar({ id, handleDeleteRow, setAlert });
     }
 
     const handleEdit = () => {
@@ -70,7 +34,7 @@ export const TableRowActions = ({ item }: TableRowProps) => {
             action: "showDetails",
             title: "Show Details",
             data: item
-        }); 
+        });
     }
 
     const BUTTONS: ButtonData[] = [

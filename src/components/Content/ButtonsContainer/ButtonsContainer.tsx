@@ -5,10 +5,15 @@ import { ButtonData } from "@type/types";
 import { IconSVG } from "@utils/IconSVG";
 import { ActionButton } from "./ActionButton";
 import "./styles/ButtonsContainer.css";
+import { useTableContext } from "@context/table.context";
 
 export const ButtonsContainer = () => {
-
+    const { fetchRows } = useTableContext();
     const setShowModal = useModalStorage((state) => state.setShowModal);
+
+    const handleRefresh = () => {
+        fetchRows();
+    }
 
     const handleAdd = () => {
         setShowModal({
@@ -25,7 +30,7 @@ export const ButtonsContainer = () => {
             tooltipLabel: "Refresh",
             Icon: RefreshIcon,
             labelArea: "Refresh rows on table",
-            function: () => { }
+            function: handleRefresh
         },
         {
             id: "Add",

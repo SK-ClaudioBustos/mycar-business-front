@@ -18,7 +18,7 @@ const alertApi: StateCreator<AlertStoreType> = (set) => ({
         duration: 0,
         type: null
     },
-    setAlert: ({ isVisible, message, type, duration = 4000 }) => {
+    setAlert: ({ isVisible=true, message, type, duration = 4000 }) => {
         set(() => ({
             alert: {
                 duration,

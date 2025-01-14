@@ -16,8 +16,8 @@ export interface ButtonData {
 export type TypeAlert = "success" | "error" | "none";
 
 export interface AlertData {
-    isVisible: boolean;
     message: string | null;
+    isVisible?: boolean;
     type?: TypeAlert | null;
     duration?: number;
 }

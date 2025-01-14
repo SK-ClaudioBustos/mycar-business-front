@@ -9,21 +9,27 @@ interface Props {
     setShowModal: (modalData: ModalType) => void;
 }
 
-const CarProperties = ["Car Id", "Company", "Model", "KM"];
-
 export const ItemDetails = ({ data, setShowModal }: Props) => {
     if (!data) return <Error label="An error occurred while retrieving the details" />;
     return (
         <div className="item-details">
             <section className="details-list">
-                {
-                    Object.values(data).map((value, index) => (
-                        <div>
-                            <p>{CarProperties[index]}</p>
-                            <span>{value}</span>
-                        </div>
-                    ))
-                }
+                <div>
+                    <p>Car Id</p>
+                    <span>{data.id}</span>
+                </div>
+                <div>
+                    <p>Company</p>
+                    <span>{data.companyName}</span>
+                </div>
+                <div>
+                    <p>Model</p>
+                    <span>{data.modelName}</span>
+                </div>
+                <div>
+                    <p>KM</p>
+                    <span>{data.km}</span>
+                </div>
             </section>
             <Button
                 onClick={() => setShowModal({ showModal: false })}

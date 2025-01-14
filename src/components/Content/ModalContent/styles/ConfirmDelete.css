@@ -1,0 +1,14 @@
+.confirmation-content {
+    text-align: center;
+    & p {
+        font-size: 1.2rem;
+        color: var(--quaternary);
+        margin: 20px 5px 40px;
+    }
+
+    & .confirmation-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+    }
+}

@@ -1,9 +1,6 @@
-import { useTableContext } from "@context/table.context";
 import EyeIcon from "@icons/eye.svg?react";
 import PencilIcon from "@icons/pencil.svg?react";
 import TrashIcon from "@icons/trash.svg?react";
-import { handleDeleteCar } from "@services/car/handleDelete";
-import { useAlertStorage } from "@store/alert.store";
 import { useModalStorage } from "@store/modal.store";
 import { ButtonData, TableRowProps } from "@type/types";
 import { IconSVG } from "@utils/IconSVG";
@@ -11,12 +8,16 @@ import { ActionButton } from "../ButtonsContainer/ActionButton";
 
 export const TableRowActions = ({ item }: TableRowProps) => {
     const { id } = item;
-    const { handleDeleteRow } = useTableContext();
     const setShowModal = useModalStorage((state) => state.setShowModal);
-    const setAlert = useAlertStorage((state) => state.setAlert);
 
     const handleDelete = () => {
-        handleDeleteCar({ id, handleDeleteRow, setAlert });
+        setShowModal({
+            showModal: true,
+            action: "delete",
+            title: "Confirm Delete",
+            data: item,
+            width: "300px"
+        });
     }
 
     const handleEdit = () => {
@@ -76,7 +77,7 @@ export const TableRowActions = ({ item }: TableRowProps) => {
                                 ariaLabel={button.labelArea}
                                 tooltipLabel={button.tooltipLabel}
                                 borderRadius="50%"
-                                onClick={button?.function || undefined}
+                                onClick={button.function}
                             >
                                 <IconSVG Icon={button.Icon} size={24} />
                             </ActionButton>

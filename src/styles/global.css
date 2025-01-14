@@ -42,3 +42,10 @@ body {
 .text-blue {
     color: var(--tertiary);
 }
+
+.form-body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

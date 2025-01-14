@@ -1,14 +1,34 @@
-.login {
+.container {
     height: 100vh;
 
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 
-    .login-content {
-        width: 400px;
-        padding: 10px 20px;
-        background-color: var(--secondary);
-        border-radius: 5px;
+    .login-form {
+        --w: 350px;
+        border-radius: 10px;
+
+        & .login-header {
+            width: var(--w);
+
+            background-color: var(--tertiary);
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            padding: 20px 25px;
+        }
+
+        & .login-content {
+            width: var(--w);
+            padding: 20px 20px 10px;
+            background-color: var(--secondary);
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+
+            & form .form-body>:last-child {
+                margin-bottom: 15px;
+            }
+        }
     }
 }

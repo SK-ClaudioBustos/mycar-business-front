@@ -10,13 +10,13 @@ import { lazy, Suspense } from "react";
 
 const Modal = lazy(() => import("@utils/Modal"));
 
-export default function Cars() {
+export const Cars = () => {
     const action = useModalStorage((state) => state.modalData.action);
     const data = useModalStorage((state) => state.modalData.data);
     const setShowModal = useModalStorage((state) => state.setShowModal);
 
     return (
-        <section style={{ margin: "100px 0 0"}}>
+        <section style={{ margin: "100px 0 0" }}>
             <TableProvider>
                 <ButtonsContainer />
                 <Table />

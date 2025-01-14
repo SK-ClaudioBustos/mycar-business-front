@@ -3,10 +3,6 @@
     flex-direction: column;
     gap: 1rem;
 
-    & button.button {
-        font-size: 1.25rem;
-    }
-
     &>:last-child {
         display: flex;
         flex-direction: column;

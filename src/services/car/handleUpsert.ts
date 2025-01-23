@@ -6,23 +6,26 @@ import { Dispatch, SetStateAction } from "react";
 interface Props {
     data: CarFormValues;
     action: ModalAction | undefined;
+    id?: string;
+    fetchRows: () => Promise<void>;
     handleAddRow: (newRow: CarItem) => void;
     setShowModal: (modalData: ModalType) => void;
     setLoading: Dispatch<SetStateAction<boolean>>;
     setShowAlert: (alert: AlertData) => void;
 }
 
-export const submitFormData = ({ data, action, handleAddRow, setLoading, setShowModal, setShowAlert }: Props) => {
+export const handleUpsert = ({ data, action, id, fetchRows, handleAddRow, setLoading, setShowModal, setShowAlert }: Props) => {
     setLoading(true);
     const carData = {
         companyName: data.companyName,
         modelName: data.modelName,
         km: data.km ? Number(data.km) : 0
     };
-    const endpointURL = action === "create" ? "api/cars" : "";
-    const url = `${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/${endpointURL}`;
+    const method = action === "create" ? "POST" : "PUT";
+    const endpoint = action === "create" ? "api/cars" : `api/cars/${id}`;
+    const url = `${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/${endpoint}`;
     const fetchParams: RequestInit = {
-        method: "POST",
+        method,
         headers: {
             "Content-Type": "application/json"
         },
@@ -31,12 +34,15 @@ export const submitFormData = ({ data, action, handleAddRow, setLoading, setShow
     };
     fetch(url, fetchParams).then((response) => {
         if (!response.ok) {
-            console.log("error", response);
             throw new Error(`Error ${response.status}`)
         }
         return response.json();
     }).then((response: Car) => {
-        handleAddRow(response);
+        if (action === "create") {
+            handleAddRow(response);
+        } else {
+            fetchRows();
+        }
         setShowAlert({
             isVisible: true,
             type: "success",

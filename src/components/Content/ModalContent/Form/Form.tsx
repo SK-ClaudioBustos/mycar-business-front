@@ -1,6 +1,6 @@
 import { useTableContext } from "@context/table.context";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { submitFormData } from "@services/submitFormData";
+import { handleUpsert } from "@services/car/handleUpsert";
 import { useAlertStorage } from "@store/alert.store";
 import { ModalAction, ModalType } from "@type/types";
 import { Button } from "@utils/Button";
@@ -21,7 +21,7 @@ interface FormProps {
 export const Form = ({ action, data, setShowModal }: FormProps) => {
     const setShowAlert = useAlertStorage((state) => state.setAlert);
 
-    const { handleAddRow } = useTableContext();
+    const { handleAddRow, fetchRows } = useTableContext();
     const [loading, setLoading] = useState(false);
     const { control, formState: { errors }, handleSubmit } = useForm<CarFormValues>({
         resolver: zodResolver(carSchema),
@@ -29,15 +29,15 @@ export const Form = ({ action, data, setShowModal }: FormProps) => {
         defaultValues: action === "edit" ? { companyName: data?.companyName, modelName: data?.modelName, km: data?.km } : carFormDefaultValues,
     });
 
-    const onSubmit: SubmitHandler<CarFormValues> = (data) => {
-        submitFormData({ data, action, handleAddRow, setLoading, setShowModal, setShowAlert });
+    const onSubmit: SubmitHandler<CarFormValues> = (dataForm) => {
+        handleUpsert({ data: dataForm, action, id: action === "edit" ? data?.id : null, fetchRows, handleAddRow, setLoading, setShowModal, setShowAlert });
     };
 
     return (
-        <form action="POST" className="form" onSubmit={handleSubmit(onSubmit)}>
+        <form action={action === "edit" ? "PUT" : "POST"} className="form" onSubmit={handleSubmit(onSubmit)}>
             {
                 loading
-                    ? (<Loading label="Uploading new Car" />)
+                    ? (<Loading label={action === "edit" ? "Editing Car..." : "Uploading Car..."} />)
                     : (<CarForm control={control} errors={errors} />)
             }
             <div>

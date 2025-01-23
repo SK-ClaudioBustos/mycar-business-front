@@ -27,7 +27,7 @@ export const Cars = () => {
             <TableProvider>
                 <ButtonsContainer />
                 <Table />
-                <Suspense fallback={<Loading label="Loading Modal" />}>
+                <Suspense>
                     <Modal>
                         <ModalContent>
                             {

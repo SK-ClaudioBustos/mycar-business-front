@@ -27,11 +27,9 @@ export default function Alert({ alert }: Props) {
                     ICONS[type]
                 }
             </div>
-            <div>
-                <p>
-                    {message}
-                </p>
-            </div>
+            <p>
+                {message}
+            </p>
         </div>
     );
 }

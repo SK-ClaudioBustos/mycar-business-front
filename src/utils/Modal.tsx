@@ -47,7 +47,7 @@ export default function Modal({ children }: Props) {
     }
 
     return createPortal(
-        <div className="overlay" onClick={closeModal}>
+        <div className="overlay">
             <div className="modal" onClick={handleContentClick} ref={modalRef}>
                 {children}
             </div>

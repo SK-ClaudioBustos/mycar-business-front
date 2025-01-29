@@ -1,4 +1,4 @@
-import { Input } from "@utils/Input";
+import { Input } from "@utils/inputs-components/Input";
 import { Control, FieldErrors } from "react-hook-form";
 
 interface Props {

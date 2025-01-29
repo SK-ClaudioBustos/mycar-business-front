@@ -1,12 +1,13 @@
-import { CarFormValues } from "@components/Content/ModalContent/schema/car.schema";
-import { Car, CarItem } from "@type/car";
-import { AlertData, ModalAction, ModalType } from "@type/types";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { CarItem } from "@type/car";
+import { AlertData, ModalType } from "@type/types";
 import { Dispatch, SetStateAction } from "react";
+import { HTMLFormMethod } from "react-router";
 
 interface Props {
-    data: CarFormValues;
-    action: ModalAction | undefined;
-    id?: string;
+    method: HTMLFormMethod;
+    endpoint: string;
+    itemData: any;
     fetchRows: () => Promise<void>;
     handleAddRow: (newRow: CarItem) => void;
     setShowModal: (modalData: ModalType) => void;
@@ -14,15 +15,8 @@ interface Props {
     setShowAlert: (alert: AlertData) => void;
 }
 
-export const handleUpsert = ({ data, action, id, fetchRows, handleAddRow, setLoading, setShowModal, setShowAlert }: Props) => {
+export const handleUpsert = ({ method, endpoint, itemData, fetchRows, handleAddRow, setLoading, setShowModal, setShowAlert }: Props) => {
     setLoading(true);
-    const carData = {
-        companyName: data.companyName,
-        modelName: data.modelName,
-        km: data.km ? Number(data.km) : 0
-    };
-    const method = action === "create" ? "POST" : "PUT";
-    const endpoint = action === "create" ? "api/cars" : `api/cars/${id}`;
     const url = `${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/${endpoint}`;
     const fetchParams: RequestInit = {
         method,
@@ -30,15 +24,15 @@ export const handleUpsert = ({ data, action, id, fetchRows, handleAddRow, setLoa
             "Content-Type": "application/json"
         },
         credentials: "include",
-        body: JSON.stringify({ ...carData })
+        body: JSON.stringify({ ...itemData })
     };
     fetch(url, fetchParams).then((response) => {
         if (!response.ok) {
             throw new Error(`Error ${response.status}`)
         }
         return response.json();
-    }).then((response: Car) => {
-        if (action === "create") {
+    }).then((response) => {
+        if (method === "POST") {
             handleAddRow(response);
         } else {
             fetchRows();
@@ -46,7 +40,7 @@ export const handleUpsert = ({ data, action, id, fetchRows, handleAddRow, setLoa
         setShowAlert({
             isVisible: true,
             type: "success",
-            message: action === "create" ? "Car added successfully" : "Car edited successfully"
+            message: method === "POST" ? "Item created" : "Item edited"
         });
     }).catch((error: Error) => {
         setShowAlert({

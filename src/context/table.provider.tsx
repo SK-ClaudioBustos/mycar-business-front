@@ -1,19 +1,22 @@
-import { Car, CarItem } from "@type/car";
-import { ErrorData } from "@type/types";
+import { CarItem } from "@type/car.ts";
+import { AppRoutes, ErrorData } from "@type/types";
 import { ReactNode, useCallback, useEffect, useState } from "react";
 import { TableContext, TableContextType } from "./table.context";
 
 interface TableProviderProps {
+    section: AppRoutes
     children: ReactNode
 }
 
-export const TableProvider = ({ children }: TableProviderProps) => {
-    const [tableRows, setTableRows] = useState<CarItem[]>([]);
+export const TableProvider = ({ section, children }: TableProviderProps) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const [tableRows, setTableRows] = useState<any[]>([]);
     const [loadingTableRows, setLoadingTableRows] = useState(false);
     const [errorTableRows, setErrorTableRows] = useState<ErrorData>(null);
 
-    const handleAddRow = (newCar: CarItem) => {
-        setTableRows([...tableRows, newCar]);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const handleAddRow = (newItem: any) => {
+        setTableRows([...tableRows, newItem]);
     }
 
     const handleDeleteRow = (idRow: number) => {
@@ -24,7 +27,7 @@ export const TableProvider = ({ children }: TableProviderProps) => {
     const fetchRows = useCallback(async () => {
         try {
             setLoadingTableRows(true);
-            const API_URL = `${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/api/cars`;
+            const API_URL = `${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/api${section}?page=0&size=5&sort=-createdAt`;
             const requestParams: RequestInit = {
                 method: "GET",
                 credentials: "include",
@@ -35,17 +38,22 @@ export const TableProvider = ({ children }: TableProviderProps) => {
             await fetch(API_URL, requestParams)
                 .then((response) => {
                     if (!response.ok) {
-                        throw new Error("An connection error has ocurred");
+                        throw new Error("Fetch Failed");
                     }
                     return response.json();
                 })
-                .then((response: Car[]) => {
-                    const rows: CarItem[] = response.map((car) => ({
-                        id: car.id,
-                        companyName: car.companyName,
-                        km: car.km,
-                        modelName: car.modelName
-                    }));
+                .then((response) => {
+                    let rows = [];
+                    if (section === "/cars") {
+                        rows = response.map((car: CarItem) => ({
+                            id: car.id,
+                            companyName: car.companyName,
+                            km: car.km,
+                            modelName: car.modelName
+                        }));
+                    } else {
+                        console.log(response);
+                    }
                     setTableRows(rows);
                 })
                 .catch((error) => { setErrorTableRows(error) });

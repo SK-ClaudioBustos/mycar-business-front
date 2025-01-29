@@ -29,8 +29,8 @@ export const TableBody = () => {
 
     return (
         <div className="table-body">
-            {tableRows.map((car) => (
-                <TableRow key={car.id} item={car} />
+            {tableRows.map((item) => (
+                <TableRow key={item.id} item={item} />
             ))}
         </div>
     );

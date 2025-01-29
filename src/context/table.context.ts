@@ -1,4 +1,5 @@
 import { CarItem } from "@type/car";
+import { IssueItem } from "@type/issue";
 import { ErrorData } from "@type/types";
 import { createContext, useContext } from "react";
 
@@ -12,10 +13,11 @@ const initValue: TableContextType = {
 };
 
 export interface TableContextType {
-    tableRows: CarItem[],
+    tableRows: CarItem[] | IssueItem[],
     loadingTableRows: boolean,
     errorTableRows: ErrorData,
-    handleAddRow: (newRow: CarItem) => void
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    handleAddRow: (newItem: any) => void
     handleDeleteRow: (idRow: number) => void
     fetchRows: () => Promise<void>
 }

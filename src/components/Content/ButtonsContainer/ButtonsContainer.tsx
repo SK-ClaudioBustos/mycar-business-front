@@ -6,11 +6,12 @@ import { IconSVG } from "@utils/IconSVG";
 import { ActionButton } from "./ActionButton";
 import "./styles/ButtonsContainer.css";
 import { useTableContext } from "@context/table.context";
+import { useLocation } from "react-router";
 
 export const ButtonsContainer = () => {
     const { fetchRows } = useTableContext();
     const setShowModal = useModalStorage((state) => state.setShowModal);
-
+    const pathname = useLocation().pathname;
     const handleRefresh = () => {
         fetchRows();
     }
@@ -19,8 +20,9 @@ export const ButtonsContainer = () => {
         setShowModal({
             showModal: true,
             action: "create",
-            title: "Add Car",
+            title: "Add Item",
             data: null,
+            width: pathname === "/cars" ? "450px" : "900px" 
         });
     }
 

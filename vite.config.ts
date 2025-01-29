@@ -18,12 +18,18 @@ export default defineConfig({
     )],
   resolve: {
     alias: {
-      '@': "/src"
+      '@components/*': "/src/components/*",
+      '@utils/*': "/src/utils/*",
+      '@type/*': "/src/types/*",
+      '@services/*': "/src/services/*",
+      '@icons/*': "/src/icons/*",
+      '@context/*': "/src/context/*",
+      '@store/*': "/src/store/*",
+      '@pages/*': "/src/pages/*"
     },
-    extensions: ['.ts', '.tsx', '.js', '.json']
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json']
   },
   server: {
-    port: 3000, // Cambia el puerto a 3000
+    port: 3000,
   },
-
 })

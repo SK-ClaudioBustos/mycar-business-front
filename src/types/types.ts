@@ -1,3 +1,7 @@
+import { FunctionComponent, ReactNode, SVGProps } from "react";
+import { IssueItem } from "./issue";
+import { CarItem } from "./car";
+
 export type ErrorData = Error | null;
 
 export interface NavItemData {
@@ -36,6 +40,12 @@ export interface ModalData {
 export type ModalType = ModalData;
 
 export interface TableRowProps {
-    item: CarItem
+    item: CarItem | IssueItem
 }
 
+export enum AppRoutes {
+    CARS = "/cars",
+    ISSUES = "/issues"
+};
+
+export type SectionMap = Record<AppRoutes, ReactNode>;

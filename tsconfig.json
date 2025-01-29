@@ -15,7 +15,7 @@
     "jsx": "react-jsx",
     "module": "ESNext",
     "target": "ES2022",
-    "lib": ["ES2023", "DOM"],
+    "lib": ["ES2023", "dom"],
     "strict": true,
     "skipLibCheck": true,
     "noEmit": true,

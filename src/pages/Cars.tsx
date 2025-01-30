@@ -6,6 +6,7 @@ import { ModalContent } from "@components/Content/ModalContent/ModalContent";
 import { carFormDefaultValues, carSchema } from "@components/Content/ModalContent/schema/car.schema";
 import { Table } from "@components/Content/Table/Table";
 import { TableProvider } from "@context/table.provider";
+import { fetchCarsRows } from "@services/car/fetchCarsRows";
 import { useModalStorage } from "@store/modal.store";
 import { AppRoutes, ModalAction } from "@type/types";
 import { lazy, ReactNode, Suspense } from "react";
@@ -35,7 +36,7 @@ export const Cars = () => {
     };
     return (
         <section style={{ margin: "100px 0 0" }}>
-            <TableProvider section={AppRoutes.CARS}>
+            <TableProvider fetchRows={fetchCarsRows}>
                 <ButtonsContainer />
                 <Table section={AppRoutes.CARS} />
                 <Suspense>

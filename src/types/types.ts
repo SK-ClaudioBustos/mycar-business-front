@@ -1,4 +1,4 @@
-import { FunctionComponent, ReactNode, SVGProps } from "react";
+import { Dispatch, FunctionComponent, ReactNode, SetStateAction, SVGProps } from "react";
 import { IssueItem } from "./issue";
 import { CarItem } from "./car";
 
@@ -49,3 +49,8 @@ export enum AppRoutes {
 };
 
 export type SectionMap = Record<AppRoutes, ReactNode>;
+
+export interface Parameters {
+    setLoading: Dispatch<SetStateAction<boolean>>;
+    setError: Dispatch<SetStateAction<ErrorData>>
+}

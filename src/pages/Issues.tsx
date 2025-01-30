@@ -6,6 +6,7 @@ import { ModalContent } from "@components/Content/ModalContent/ModalContent";
 import { issueFormDefaultValues, issueSchema } from "@components/Content/ModalContent/schema/issues.schema";
 import { Table } from "@components/Content/Table/Table";
 import { TableProvider } from "@context/table.provider";
+import { fetchIssuesRows } from "@services/issues/fetchIssuesRows";
 import { useModalStorage } from "@store/modal.store";
 import { AppRoutes, ModalAction } from "@type/types";
 import { lazy, ReactNode, Suspense } from "react";
@@ -23,7 +24,7 @@ export const Issues = () => {
     };
     return (
         <section style={{ margin: "100px 0 0" }}>
-            <TableProvider section={AppRoutes.ISSUES}>
+            <TableProvider fetchRows={fetchIssuesRows}>
                 <ButtonsContainer />
                 <Table section={AppRoutes.ISSUES} />
                 <Suspense>

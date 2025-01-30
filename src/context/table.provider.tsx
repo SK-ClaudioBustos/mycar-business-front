@@ -1,20 +1,18 @@
-import { CarItem } from "@type/car.ts";
-import { AppRoutes, ErrorData } from "@type/types";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { ErrorData, Parameters } from "@type/types";
 import { ReactNode, useCallback, useEffect, useState } from "react";
 import { TableContext, TableContextType } from "./table.context";
 
 interface TableProviderProps {
-    section: AppRoutes
+    fetchRows: (params: Parameters) => any
     children: ReactNode
 }
 
-export const TableProvider = ({ section, children }: TableProviderProps) => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const TableProvider = ({ children, fetchRows }: TableProviderProps) => {
     const [tableRows, setTableRows] = useState<any[]>([]);
     const [loadingTableRows, setLoadingTableRows] = useState(false);
     const [errorTableRows, setErrorTableRows] = useState<ErrorData>(null);
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleAddRow = (newItem: any) => {
         setTableRows([...tableRows, newItem]);
     }
@@ -24,48 +22,13 @@ export const TableProvider = ({ section, children }: TableProviderProps) => {
         setTableRows(filteredRows);
     }
 
-    const fetchRows = useCallback(async () => {
-        try {
-            setLoadingTableRows(true);
-            const API_URL = `${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/api${section}?page=0&size=5&sort=-createdAt`;
-            const requestParams: RequestInit = {
-                method: "GET",
-                credentials: "include",
-                headers: {
-                    "Content-Type": "application/json",
-                }
-            }
-            await fetch(API_URL, requestParams)
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error("Fetch Failed");
-                    }
-                    return response.json();
-                })
-                .then((response) => {
-                    let rows = [];
-                    if (section === "/cars") {
-                        rows = response.map((car: CarItem) => ({
-                            id: car.id,
-                            companyName: car.companyName,
-                            km: car.km,
-                            modelName: car.modelName
-                        }));
-                    } else {
-                        console.log(response);
-                    }
-                    setTableRows(rows);
-                })
-                .catch((error) => { setErrorTableRows(error) });
-        } catch (error) {
-            setErrorTableRows(error as Error);
-        } finally {
-            setLoadingTableRows(false);
-        }
-    }, []);
+    const handleFetchRows = useCallback(async () => {
+        const result = await fetchRows({ setError: setErrorTableRows, setLoading: setLoadingTableRows });
+        setTableRows(result);
+    },[]);
 
     useEffect(() => {
-        fetchRows();
+        handleFetchRows();
     }, []);
 
 
@@ -75,7 +38,7 @@ export const TableProvider = ({ section, children }: TableProviderProps) => {
         errorTableRows,
         handleAddRow,
         handleDeleteRow,
-        fetchRows
+        fetchRows:  handleFetchRows
     }
 
     return (

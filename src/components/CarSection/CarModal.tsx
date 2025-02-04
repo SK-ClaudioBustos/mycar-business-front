@@ -3,12 +3,15 @@ import { ModalContent } from "@components/Content/ModalContent/ModalContent";
 import { AppRoutes, ModalAction } from "@type/types";
 import { lazy, Suspense, useMemo } from "react";
 import { getCarsFormProps } from "./getCarsFormProps";
+import { useModalStorage } from "@store/modal.store";
 const Modal = lazy(() => import("@utils/Modal"));
 const Form = lazy(() => import("@components/Content/ModalContent/Form/Form"));
 const ItemDetails = lazy(() => import("@components/Content/ModalContent/ItemDetails/ItemDetails"));
 const ConfirmDelete = lazy(() => import("@components/Content/ModalContent/ConfirmDelete"));
 
-export default function CarModal({ action, data }: { action: ModalAction | undefined; data: any }) {
+export default function CarModal() {
+    const action = useModalStorage((state) => state.modalData.action);
+    const data = useModalStorage((state) => state.modalData.data);
     const CONTENT_MAP = useMemo(() => ({
         "showDetails": <ItemDetails section={AppRoutes.CARS} data={data} />,
         "create": <Form {...getCarsFormProps("POST", data)} />,

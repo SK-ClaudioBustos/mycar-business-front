@@ -22,7 +22,7 @@ interface FormProps {
     data: Record<string, any> | null | undefined;
 }
 
-export const Form = ({ action, section, schema, defaultValues, data }: FormProps) => {
+export default function Form({ action, section, schema, defaultValues, data }: FormProps) {
     const setShowAlert = useAlertStorage((state) => state.setAlert);
     const setShowModal = useModalStorage((state) => state.setShowModal);
     const { handleAddRow, fetchRows } = useTableContext();

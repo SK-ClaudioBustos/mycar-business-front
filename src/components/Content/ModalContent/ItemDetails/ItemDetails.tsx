@@ -11,7 +11,7 @@ interface Props {
     section: AppRoutes;
 }
 
-export const ItemDetails = ({ data, section }: Props) => {
+export default function ItemDetails ({ data, section }: Props) {
     const setShowModal = useModalStorage((state) => state.setShowModal);
     const DETAILS: SectionMap = {
         "/cars": <CarDetails data={data} />,

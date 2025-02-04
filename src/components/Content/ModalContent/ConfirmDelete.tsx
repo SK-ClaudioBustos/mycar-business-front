@@ -12,7 +12,7 @@ interface Props {
     data: Record<string, any> | null | undefined;
 }
 
-export const ConfirmDelete = ({ data }: Props) => {
+export default function ConfirmDelete({ data }: Props) {
     const { handleDeleteRow } = useTableContext();
     const setAlert = useAlertStorage((state) => state.setAlert);
     const setShowModal = useModalStorage((state) => state.setShowModal);

@@ -1,5 +1,5 @@
+import { DataSchema } from "@type/fetch";
 import { Parameters } from "@type/types";
-
 
 export const fetchIssuesRows = async ({ setError, setLoading }: Parameters) => {
     try {
@@ -19,9 +19,8 @@ export const fetchIssuesRows = async ({ setError, setLoading }: Parameters) => {
                 }
                 return response.json();
             })
-            .then((response) => {
-                console.log(response);
-                return [];
+            .then((response: DataSchema) => {
+                return response;
             })
             .catch((error) => { setError(error) });
 

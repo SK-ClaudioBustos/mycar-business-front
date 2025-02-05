@@ -1,19 +1,18 @@
-import { CarItem } from "@type/car";
-import { IssueItem } from "@type/issue";
+import { DataRows } from "@type/fetch";
 import { ErrorData } from "@type/types";
 import { createContext, useContext } from "react";
 
 const initValue: TableContextType = {
-    tableRows: [],
+    dataRows: null,
     loadingTableRows: false,
     errorTableRows: null,
     handleAddRow: () => { },
     handleDeleteRow: () => { },
-    fetchRows: async () => Promise.resolve() 
+    fetchRows: async () => Promise.resolve()
 };
 
 export interface TableContextType {
-    tableRows: CarItem[] | IssueItem[],
+    dataRows: DataRows,
     loadingTableRows: boolean,
     errorTableRows: ErrorData,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

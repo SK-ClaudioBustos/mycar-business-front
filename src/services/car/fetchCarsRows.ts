@@ -1,4 +1,5 @@
 import { Car, CarItem } from "@type/car";
+import { DataSchema } from "@type/fetch";
 import { Parameters } from "@type/types";
 
 export const fetchCarsRows = async ({ setError, setLoading }: Parameters) => {
@@ -30,7 +31,36 @@ export const fetchCarsRows = async ({ setError, setLoading }: Parameters) => {
             })
             .catch((error) => { setError(error) });
 
-        return result;
+        const carsPaged: DataSchema = {
+            content: result as CarItem[],
+            empty: false,
+            first: false,
+            last: false,
+            number: 0,
+            pageable: {
+                offset: 0,
+                paged: false,
+                pageNumber: 0,
+                pageSize: 0,
+                sort: {
+                    empty: false,
+                    sorted: false,
+                    unsorted: false
+                },
+                unpaged: false
+            },
+            numberOfElements: (result as CarItem[]).length,
+            size: 0,
+            sort: {
+                empty: false,
+                sorted: false,
+                unsorted: false
+            },
+            totalElements: 0,
+            totalPages: 0
+        }
+
+        return carsPaged;
     } catch (error) {
         setError(error as Error);
     } finally {

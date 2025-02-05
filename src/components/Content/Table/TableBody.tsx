@@ -5,7 +5,7 @@ import { TableRow } from "./TableRow";
 import "./styles/TableBody.css";
 
 export const TableBody = () => {
-    const { tableRows, loadingTableRows, errorTableRows } = useTableContext();
+    const { dataRows, loadingTableRows, errorTableRows } = useTableContext();
 
     if (loadingTableRows) {
         return <Loading label="Loading Rows" />;
@@ -19,7 +19,7 @@ export const TableBody = () => {
         );
     }
 
-    if (tableRows.length === 0) {
+    if (dataRows?.numberOfElements === 0) {
         return (
             <div className="table-body flex-center text-blue size-100">
                 <h3>No data to show</h3>
@@ -29,9 +29,11 @@ export const TableBody = () => {
 
     return (
         <div className="table-body">
-            {tableRows.map((item) => (
-                <TableRow key={item.id} item={item} />
-            ))}
+            {
+                dataRows?.content.map((item) => (
+                    <TableRow key={item.id} item={item} />
+                ))
+            }
         </div>
     );
 };

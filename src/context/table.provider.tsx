@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { DataRows, DataSchema } from "@type/fetch";
 import { ErrorData, Parameters } from "@type/types";
 import { ReactNode, useCallback, useEffect, useState } from "react";
 import { TableContext, TableContextType } from "./table.context";
@@ -9,23 +10,35 @@ interface TableProviderProps {
 }
 
 export const TableProvider = ({ children, fetchRows }: TableProviderProps) => {
-    const [tableRows, setTableRows] = useState<any[]>([]);
+    const [dataRows, setDataRows] = useState<DataRows>(null);
     const [loadingTableRows, setLoadingTableRows] = useState(false);
     const [errorTableRows, setErrorTableRows] = useState<ErrorData>(null);
 
     const handleAddRow = (newItem: any) => {
-        setTableRows([...tableRows, newItem]);
+        if (dataRows) {
+            const data: DataSchema = {
+                ...dataRows,
+                content: [...dataRows.content, newItem]
+            };
+            setDataRows(data);
+        }
     }
 
     const handleDeleteRow = (idRow: number) => {
-        const filteredRows = tableRows.filter((item) => item.id !== idRow);
-        setTableRows(filteredRows);
+        if (dataRows) {
+            const filteredRows = dataRows.content.filter((item) => item.id !== idRow);
+            const data: DataSchema = {
+                ...dataRows,
+                content: filteredRows
+            }
+            setDataRows(data);
+        }
     }
 
     const handleFetchRows = useCallback(async () => {
         const result = await fetchRows({ setError: setErrorTableRows, setLoading: setLoadingTableRows });
-        setTableRows(result);
-    },[]);
+        setDataRows(result);
+    }, []);
 
     useEffect(() => {
         handleFetchRows();
@@ -33,12 +46,12 @@ export const TableProvider = ({ children, fetchRows }: TableProviderProps) => {
 
 
     const value: TableContextType = {
-        tableRows,
+        dataRows,
         loadingTableRows,
         errorTableRows,
         handleAddRow,
         handleDeleteRow,
-        fetchRows:  handleFetchRows
+        fetchRows: handleFetchRows
     }
 
     return (

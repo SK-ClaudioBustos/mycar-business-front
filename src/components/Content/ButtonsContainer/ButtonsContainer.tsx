@@ -22,7 +22,7 @@ export const ButtonsContainer = () => {
             action: "create",
             title: "Add Item",
             data: null,
-            width: pathname === "/cars" ? "450px" : "900px" 
+            width: pathname === "/cars" ? "295px" : "600px" 
         });
     }
 

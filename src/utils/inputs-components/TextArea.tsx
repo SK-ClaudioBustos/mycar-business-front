@@ -21,10 +21,7 @@ export function TextArea<T extends FieldValues>({ label, name, control, errors }
             <label htmlFor={id}>{label}</label>
             <Controller name={field.name} control={control} render={
                 ({ field }) =>
-                    <textarea id={id} {...field} className="textarea-control" onChange={(e) => {
-                        const value = e.target.value;
-                        field.onChange(value);
-                    }}></textarea>
+                    <textarea id={id} {...field} className="textarea-control"></textarea>
             } />
             {errors && <p>{errors.message}</p>}
         </div>

@@ -1,5 +1,4 @@
 .textarea-container {
-    grid-column: span 2;
     width: 100%;
     min-height: 85px;
 
@@ -9,15 +8,17 @@
     }
 
     & .textarea-control {
+        margin-top: 5px;
         border: 2px solid var(--quaternary);
         border-radius: 10px;
         padding: 10px 10px;
         -ms-grid-column-span: 2;
         min-height: 40px;
         height: 40px;
-        width: 870px;
-        max-width: 870px;
-        min-width: 870px;
+        --w: 280px;
+        width: var(--w);
+        max-width: var(--w);
+        min-width: var(--w);
     }
 
     &:focus-within {

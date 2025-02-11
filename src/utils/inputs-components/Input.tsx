@@ -1,6 +1,5 @@
 import { HTMLInputTypeAttribute } from "react";
 import { Control, Controller, FieldError, FieldValues, Path, useController } from "react-hook-form";
-import "./styles/Input.css";
 
 interface InputProps<T extends FieldValues> {
     label: string;
@@ -19,7 +18,7 @@ export function Input<T extends FieldValues>({ label, name, control, errors, typ
     });
     const id = `${field.name}_id`;
     return (
-        <div className={`input-container ${errors ? "invalid-field" : "valid-field"}`}>
+        <div className={`form-input-container ${errors ? "invalid-field" : "valid-field"}`}>
             <label htmlFor={id}>{label}</label>
             <Controller name={field.name} control={control} render={
                 ({ field }) =>

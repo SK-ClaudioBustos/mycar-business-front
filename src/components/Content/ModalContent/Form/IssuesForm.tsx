@@ -1,6 +1,7 @@
 import { Input } from "@utils/inputs-components/Input";
 import { Select } from "@utils/inputs-components/Select";
 import { TextArea } from "@utils/inputs-components/TextArea";
+import { IssueTypeSelector } from "./IssueTypeSelector";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const IssuesForm = ({ control, errors }: { control: any, errors: any }) => {
@@ -13,20 +14,15 @@ export const IssuesForm = ({ control, errors }: { control: any, errors: any }) =
                 errors={errors.name}
             />
             <Input
-                label="Model"
-                name="modelName"
-                control={control}
-                errors={errors.modelName}
-            />
-            <Input
-                label="Kilometers Traveled"
+                label="Current Distance"
                 name="km"
                 type="number"
                 control={control}
-                errors={errors.km}
+                errors={errors.currentDistance}
             />
-            <Select label="Car" name="car" options={[{id: 1, name: "Renault"}]} control={control} errors={errors} />
-            <TextArea label="Description" name="description" control={control} errors={errors} />
+            <Select label="Car" placeholder="Select a car" name="carId" options={[{ value: "1", option: "Renault" }, { value: "2", option: "Wolkswagen" }]} control={control} errors={errors.carId} />
+            <TextArea label="Description" name="description" control={control} errors={errors.description} />
+            <IssueTypeSelector control={control} errors={errors} />
         </div>
     );
 }

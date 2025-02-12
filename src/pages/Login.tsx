@@ -1,4 +1,4 @@
-import { LoginForm } from "@components/Login/LoginForm";
+import { LoginBody } from "@components/Login/LoginBody";
 import { useAlertStorage } from "@store/alert.store";
 import { lazy, Suspense } from "react";
 import "./styles/login.css";
@@ -8,7 +8,7 @@ export const Login = () => {
     const alert = useAlertStorage((state) => state.alert);
     return (
         <section className="container">
-            <LoginForm />
+            <LoginBody />
             <Suspense>
                 <Alert alert={alert} /> 
             </Suspense>

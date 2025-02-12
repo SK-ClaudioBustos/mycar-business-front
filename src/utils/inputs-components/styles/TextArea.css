@@ -21,6 +21,11 @@
         min-width: var(--w);
     }
 
+    & p {
+        font-size: .8em;
+        color: var(--error);
+    }
+
     &:focus-within {
         & label {
             color: var(--tertiary);

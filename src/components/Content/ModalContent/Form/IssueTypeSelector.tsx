@@ -29,7 +29,7 @@ export function IssueTypeSelector({ control, errors }: { control: any; errors: a
             {selectedType === "1" && (
                 <Input
                     label="Notification Distance"
-                    name="km"
+                    name="notificationDistance"
                     type="number"
                     control={control}
                     errors={errors.notificationDistance}
@@ -40,7 +40,7 @@ export function IssueTypeSelector({ control, errors }: { control: any; errors: a
             {selectedType === "2" && (
                 <Input
                     label="Notification Days"
-                    name="days"
+                    name="notificationDays"
                     type="number"
                     control={control}
                     errors={errors.notificationDays}

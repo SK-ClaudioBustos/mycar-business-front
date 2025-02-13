@@ -42,21 +42,21 @@ export default function Form({ action, section, schema, defaultValues, data }: F
                 km: dataForm.km ? Number(dataForm.km) : 0
             };
         } else {
-            itemData = null;
+            itemData = dataForm;
         }
         const endpoint = action === "POST" ? `api${section}` : `api${section}/${data?.id}`;
         handleUpsert({ method: action, endpoint, itemData, fetchRows, handleAddRow, setLoading, setShowModal, setShowAlert });
     };
-
     return (
         <form action={action} className="form" onSubmit={handleSubmit(onSubmit)}>
             {
                 loading && <Loading label={action === "PUT" ? "Editing..." : "Creating..."} />
             }
             {
-                !loading && section === "/cars"
-                    ? (<CarForm control={control} errors={errors} />)
-                    : (<IssuesForm control={control} errors={errors} />)
+                !loading && section === "/cars" && <CarForm control={control} errors={errors} />
+            }
+            {
+                !loading && section === "/issues" && <IssuesForm control={control} errors={errors} />
             }
             <div>
                 <Button

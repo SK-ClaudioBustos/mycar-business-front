@@ -2,7 +2,6 @@ export interface IssueItem {
     id: number;
     name: string;
     date: string;
-    distance: number;
     currentDistance: number;
 }
 

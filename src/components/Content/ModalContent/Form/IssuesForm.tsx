@@ -15,12 +15,19 @@ export const IssuesForm = ({ control, errors }: { control: any, errors: any }) =
             />
             <Input
                 label="Current Distance"
-                name="km"
+                name="currentDistance"
                 type="number"
                 control={control}
                 errors={errors.currentDistance}
             />
-            <Select label="Car" placeholder="Select a car" name="carId" options={[{ value: "1", option: "Renault" }, { value: "2", option: "Wolkswagen" }]} control={control} errors={errors.carId} />
+            <Select
+                label="Car"
+                placeholder="Select a car"
+                name="carId"
+                options={[{ value: "1", option: "Renault" }, { value: "2", option: "Wolkswagen" }]}
+                control={control}
+                errors={errors.carId}
+            />
             <TextArea label="Description" name="description" control={control} errors={errors.description} />
             <IssueTypeSelector control={control} errors={errors} />
         </div>

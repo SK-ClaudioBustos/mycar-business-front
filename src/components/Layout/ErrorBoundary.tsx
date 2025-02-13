@@ -1,4 +1,4 @@
-import React, { Component, ReactNode } from "react";
+import { Component, ErrorInfo, ReactNode } from "react";
 
 interface Props {
     fallback: ReactNode;
@@ -14,12 +14,12 @@ class ErrorBoundary extends Component<Props> {
         this.state = { hasError: false };
     }
 
-    static getDerivedStateFromError(error: React.ErrorInfo) {
-        console.log(error);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    static getDerivedStateFromError(error: ErrorInfo) {
         return { hasError: true };
     }
 
-    componentDidCatch(error: Error, info: React.ErrorInfo) {
+    componentDidCatch(error: Error, info: ErrorInfo) {
         console.log({ error, info })
     }
 

@@ -25,7 +25,8 @@ export default defineConfig({
       '@icons/*': "/src/icons/*",
       '@context/*': "/src/context/*",
       '@store/*': "/src/store/*",
-      '@pages/*': "/src/pages/*"
+      '@pages/*': "/src/pages/*",
+      "@functions/*": "src/functions/*",
     },
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json']
   },

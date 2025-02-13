@@ -10,6 +10,7 @@
       "@context/*": ["src/context/*"],
       "@store/*": ["src/store/*"],
       "@pages/*": ["src/pages/*"],
+      "@functions/*": ["src/functions/*"],
     },
     "moduleResolution": "node",
     "jsx": "react-jsx",

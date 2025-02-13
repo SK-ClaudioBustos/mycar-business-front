@@ -13,7 +13,7 @@ export const fetchCarsRows = async ({ setError, setLoading }: Parameters) => {
                 "Content-Type": "application/json",
             }
         }
-        const result = await fetch(API_URL, requestParams)
+        const result: CarItem[] = await fetch(API_URL, requestParams)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error("Fetch Cars Data Failed");
@@ -29,10 +29,10 @@ export const fetchCarsRows = async ({ setError, setLoading }: Parameters) => {
                 }));
                 return rows;
             })
-            .catch((error) => { setError(error) });
+            .catch((error) => { setError(error) }) ?? [];
 
         const carsPaged: DataSchema = {
-            content: result as CarItem[],
+            content: result,
             empty: false,
             first: false,
             last: false,
@@ -49,7 +49,7 @@ export const fetchCarsRows = async ({ setError, setLoading }: Parameters) => {
                 },
                 unpaged: false
             },
-            numberOfElements: (result as CarItem[]).length,
+            numberOfElements: result.length,
             size: 0,
             sort: {
                 empty: false,

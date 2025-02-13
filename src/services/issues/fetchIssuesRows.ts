@@ -1,4 +1,5 @@
 import { DataSchema } from "@type/fetch";
+import { IssueItem, IssueModel } from "@type/issue";
 import { Parameters } from "@type/types";
 
 export const fetchIssuesRows = async ({ setError, setLoading }: Parameters) => {
@@ -12,19 +13,26 @@ export const fetchIssuesRows = async ({ setError, setLoading }: Parameters) => {
                 "Content-Type": "application/json",
             }
         }
-        const result = await fetch(API_URL, requestParams)
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error("Fetch Issues Data Failed");
-                }
-                return response.json();
-            })
-            .then((response: DataSchema) => {
-                return response;
-            })
-            .catch((error) => { setError(error) });
+        const response = await fetch(API_URL, requestParams);
 
-        return result;
+        if (!response.ok) {
+            throw new Error("Fetch Issues Data Failed");
+        }
+        const result: DataSchema = await response.json();
+
+        const content: IssueItem[] = result.content.map((item: IssueModel) => ({
+            id: item.id,
+            name: item.name,
+            date: item.createdAt,
+            currentDistance: item.currentDistance ?? 0
+        }));
+
+        const issuesPaged: DataSchema = {
+            ...result,
+            content
+        }
+
+        return issuesPaged;
     } catch (error) {
         setError(error as Error);
     } finally {

@@ -10,9 +10,6 @@ export const IssuesHeaders = () => {
                     Date
                 </span>
                 <span>
-                    Distance
-                </span>
-                <span>
                     Current Distance
                 </span>
                 <div className="actions-header"></div>

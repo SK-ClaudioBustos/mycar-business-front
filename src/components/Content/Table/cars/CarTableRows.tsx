@@ -1,8 +1,7 @@
 import { CarItem } from "src/types/car";
-import { TableRowProps } from "src/types/types";
 
-export const CarTableRows = ({ item }: TableRowProps) => {
-    const { companyName, modelName, km } = item as CarItem;
+export const CarTableRows = ({ item }: { item: CarItem }) => {
+    const { companyName, modelName, km } = item;
     return (
         <>
             <span>

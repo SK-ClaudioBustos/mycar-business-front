@@ -1,15 +1,14 @@
 import { TableRowProps } from "@type/types";
-import { useLocation } from "react-router";
-import { CarTableRows } from "./CarTableRows";
-import { IssuesTableRows } from "./IssuesTableRows";
+import { isCarItem } from "@functions/isCarItem";
+import { CarTableRows } from "./cars/CarTableRows";
+import { IssuesTableRows } from "./issues/IssuesTableRows";
 import { TableRowActions } from "./TableRowActions";
 
 export const TableRow = ({ item }: TableRowProps) => {
-    const pathname = useLocation().pathname;
     return (
         <div className="table-row">
             {
-                pathname === "/cars"
+                isCarItem(item)
                     ? <CarTableRows item={item} />
                     : <IssuesTableRows item={item} />
             }

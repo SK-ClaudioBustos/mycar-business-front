@@ -14,6 +14,7 @@ export const TableProvider = ({ children, fetchRows }: TableProviderProps) => {
     const [loadingTableRows, setLoadingTableRows] = useState(false);
     const [errorTableRows, setErrorTableRows] = useState<ErrorData>(null);
 
+    // NO esta siendo usada en ningun lugar
     const handleAddRow = (newItem: any) => {
         if (dataRows) {
             const data: DataSchema = {

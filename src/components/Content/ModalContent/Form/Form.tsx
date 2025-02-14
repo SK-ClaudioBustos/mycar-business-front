@@ -10,9 +10,9 @@ import { Loading } from "@utils/Loading";
 import { lazy, useState } from "react";
 import { useForm } from "react-hook-form";
 import { HTMLFormMethod } from "react-router";
-const CarForm = lazy(() => import("./CarForm"));
-const IssuesForm = lazy( () => import("./IssuesForm"));
 import "./styles/Form.css";
+const CarForm = lazy(() => import("./CarForm"));
+const IssuesForm = lazy(() => import("./IssuesForm"));
 
 interface FormProps {
     action: HTMLFormMethod;
@@ -25,7 +25,7 @@ interface FormProps {
 export default function Form({ action, section, schema, defaultValues, data }: FormProps) {
     const setShowAlert = useAlertStorage((state) => state.setAlert);
     const setShowModal = useModalStorage((state) => state.setShowModal);
-    const { handleAddRow, fetchRows } = useTableContext();
+    const { fetchRows } = useTableContext();
     const [loading, setLoading] = useState(false);
     const { control, formState: { errors }, handleSubmit } = useForm({
         resolver: zodResolver(schema),
@@ -45,14 +45,14 @@ export default function Form({ action, section, schema, defaultValues, data }: F
             itemData = dataForm;
         }
         const endpoint = action === "POST" ? `api${section}` : `api${section}/${data?.id}`;
-        handleUpsert({ method: action, endpoint, itemData, fetchRows, handleAddRow, setLoading, setShowModal, setShowAlert });
+        handleUpsert({ method: action, endpoint, itemData, fetchRows, setLoading, setShowModal, setShowAlert });
     };
 
     const FORM_MAP = {
         "/cars": <CarForm control={control} errors={errors} />,
         "/issues": <IssuesForm control={control} errors={errors} />
     };
-    
+
     return (
         <form action={action} className="form" onSubmit={handleSubmit(onSubmit)}>
             {

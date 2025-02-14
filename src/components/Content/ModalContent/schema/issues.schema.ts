@@ -14,7 +14,7 @@ export const issueFormDefaultValues = {
     name: "",
     description: "",
     notificationDays: 1,
-    notificationDistance: 0,
+    notificationDistance: 50,
     currentDistance: 0,
     typeId: "disabled",
     carId: "disabled",

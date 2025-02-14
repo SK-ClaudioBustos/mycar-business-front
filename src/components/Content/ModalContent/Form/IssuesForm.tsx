@@ -4,7 +4,7 @@ import { TextArea } from "@utils/inputs-components/TextArea";
 import { IssueTypeSelector } from "./IssueTypeSelector";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const IssuesForm = ({ control, errors }: { control: any, errors: any }) => {
+export default function IssuesForm({ control, errors }: { control: any, errors: any }) {
     return (
         <div className="issue-form">
             <Input

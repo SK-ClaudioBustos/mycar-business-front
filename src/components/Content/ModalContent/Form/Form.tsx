@@ -7,11 +7,11 @@ import { useModalStorage } from "@store/modal.store";
 import { AppRoutes } from "@type/types";
 import { Button } from "@utils/Button";
 import { Loading } from "@utils/Loading";
-import { useState } from "react";
+import { lazy, useState } from "react";
 import { useForm } from "react-hook-form";
 import { HTMLFormMethod } from "react-router";
-import { CarForm } from "./CarForm";
-import { IssuesForm } from "./IssuesForm";
+const CarForm = lazy(() => import("./CarForm"));
+const IssuesForm = lazy( () => import("./IssuesForm"));
 import "./styles/Form.css";
 
 interface FormProps {
@@ -47,38 +47,46 @@ export default function Form({ action, section, schema, defaultValues, data }: F
         const endpoint = action === "POST" ? `api${section}` : `api${section}/${data?.id}`;
         handleUpsert({ method: action, endpoint, itemData, fetchRows, handleAddRow, setLoading, setShowModal, setShowAlert });
     };
+
+    const FORM_MAP = {
+        "/cars": <CarForm control={control} errors={errors} />,
+        "/issues": <IssuesForm control={control} errors={errors} />
+    };
+    
     return (
         <form action={action} className="form" onSubmit={handleSubmit(onSubmit)}>
             {
                 loading && <Loading label={action === "PUT" ? "Editing..." : "Creating..."} />
             }
             {
-                !loading && section === "/cars" && <CarForm control={control} errors={errors} />
+                !loading && FORM_MAP[section]
             }
-            {
-                !loading && section === "/issues" && <IssuesForm control={control} errors={errors} />
+            {!loading &&
+                (
+                    <div>
+                        <Button
+                            ariaLabel="Submit form"
+                            type="submit"
+                            className="bg-blue"
+                            height="40px"
+                            width="100%"
+                            borderRadius="5px">
+                            Submit
+                        </Button>
+                        <Button
+                            onClick={() => setShowModal({ showModal: false })}
+                            ariaLabel="Submit form"
+                            type="button"
+                            className="bg-gray"
+                            height="40px"
+                            width="100%"
+                            borderRadius="5px">
+                            Cancel
+                        </Button>
+                    </div>
+                )
             }
-            <div>
-                <Button
-                    ariaLabel="Submit form"
-                    type="submit"
-                    className="bg-blue"
-                    height="40px"
-                    width="100%"
-                    borderRadius="5px">
-                    Submit
-                </Button>
-                <Button
-                    onClick={() => setShowModal({ showModal: false })}
-                    ariaLabel="Submit form"
-                    type="button"
-                    className="bg-gray"
-                    height="40px"
-                    width="100%"
-                    borderRadius="5px">
-                    Cancel
-                </Button>
-            </div>
+
         </form>
     );
 }

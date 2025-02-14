@@ -14,7 +14,7 @@ export interface CarFormControlProps {
     }>;
 }
 
-export const CarForm = ({ control, errors }: CarFormControlProps) => {
+export default function CarForm({ control, errors }: CarFormControlProps) {
     return (
         <div className="form-body">
             <Input label="Company Name" name="companyName" control={control} errors={errors.companyName} />

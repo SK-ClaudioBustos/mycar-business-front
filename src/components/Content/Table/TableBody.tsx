@@ -19,14 +19,14 @@ export const TableBody = () => {
         );
     }
 
-    if (dataRows?.numberOfElements === 0) {
+    if (dataRows?.content.length === 0) {
         return (
             <div className="table-body flex-center text-blue size-100">
                 <h3>No data to show</h3>
             </div>
         );
     }
-
+    console.log(dataRows);
     return (
         <div className="table-body">
             {

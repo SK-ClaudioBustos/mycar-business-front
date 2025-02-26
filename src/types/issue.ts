@@ -15,7 +15,12 @@ export interface IssueModel {
     typeEntityId: number;
     notificationDate?: string;
     notificationDistance?: number;
+    typeName: string;
+    statusId: number;
+    statusName: string;
+    typeId: number;
+    carId: number;
     createdAt: string;
     updatedAt?: string;
-  }
-  
+}
+

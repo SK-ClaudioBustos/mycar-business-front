@@ -54,3 +54,9 @@ export interface Parameters {
     setLoading: Dispatch<SetStateAction<boolean>>;
     setError: Dispatch<SetStateAction<ErrorData>>
 }
+
+
+export interface SelectOption {
+    value: string;
+    option: string;
+}

@@ -1,9 +1,5 @@
+import { ErrorData, SelectOption } from "@type/types";
 import { Control, Controller, FieldError, FieldValues, Path, useController } from "react-hook-form";
-
-interface SelectOption {
-    value: string;
-    option: string;
-}
 
 interface InputProps<T extends FieldValues> {
     label: string;
@@ -12,9 +8,11 @@ interface InputProps<T extends FieldValues> {
     errors: FieldError | undefined;
     control: Control<T>;
     options: SelectOption[];
+    error?: ErrorData;
+    loading?: boolean;
 }
 
-export function Select<T extends FieldValues>({ label, placeholder, name, control, errors, options }: InputProps<T>) {
+export function Select<T extends FieldValues>({ label, placeholder, name, control, errors, options, loading = false, error = null }: InputProps<T>) {
     const {
         field,
     } = useController({
@@ -29,6 +27,7 @@ export function Select<T extends FieldValues>({ label, placeholder, name, contro
             <label htmlFor={id}>{label}</label>
             <Controller
                 name={name}
+                disabled={loading}
                 control={control}
                 render={({ field }) => (
                     <select
@@ -46,6 +45,7 @@ export function Select<T extends FieldValues>({ label, placeholder, name, contro
                 )}
             />
             {errors && <p>{errors.message}</p>}
+            {error && <p>{error.message}</p>}
         </div>
     );
 }

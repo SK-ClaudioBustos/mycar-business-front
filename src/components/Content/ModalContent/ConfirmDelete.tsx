@@ -18,12 +18,12 @@ export default function ConfirmDelete({ data }: Props) {
     const setShowModal = useModalStorage((state) => state.setShowModal);
     const [loading, setLoading] = useState(false);
 
-    const handleConfirm = () => {
-        handleDeleteCar({ id: data?.id, setShowModal, handleDeleteRow, setAlert, setLoading });
+    if (loading) {
+        return <Loading label="Deleting..." />;
     }
 
-    if (loading) {
-        <Loading label="Deleting..." />
+    const handleConfirm = () => {
+        handleDeleteCar({ id: data?.id, setShowModal, handleDeleteRow, setAlert, setLoading });
     }
 
     return (

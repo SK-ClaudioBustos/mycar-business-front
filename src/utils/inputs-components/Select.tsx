@@ -35,7 +35,9 @@ export function Select<T extends FieldValues>({ label, placeholder, name, contro
                         {...field}
                         className="form-control"
                     >
-                        <option disabled value="disabled">{placeholder}</option>
+                        <option disabled value="disabled">
+                            {options.length === 0 ? "No options available" : placeholder}
+                        </option>
                         {options.map((option) => (
                             <option key={option.value} value={option.value}>
                                 {option.option}

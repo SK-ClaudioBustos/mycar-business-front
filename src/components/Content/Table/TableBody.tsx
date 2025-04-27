@@ -26,7 +26,6 @@ export const TableBody = () => {
             </div>
         );
     }
-    console.log(dataRows);
     return (
         <div className="table-body">
             {

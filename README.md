@@ -28,3 +28,6 @@ Sigue estos pasos para ejecutar el proyecto en tu entorno local:
    ```
 5. Abre tu navegador y accede a `http://localhost:3000`.
 
+## Aclaraciones
+Para poder usar completamente el sistema van a tener que clonar el backend desde el siguiente [Repositorio](https://github.com/IvIGMS/mycar-business)
+
